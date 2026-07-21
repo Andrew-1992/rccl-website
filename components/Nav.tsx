@@ -11,9 +11,17 @@ const links = [
   { href: "/portfolio", label: "Projects" },
   { href: "/shop", label: "Shop" },
   { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/contact", label: "Contact" },
 ];
 
+/**
+ * Transparent over the hero at the top of the page (blends into whatever
+ * dark background/media the Hero or PageHero is showing), solidifying to
+ * a white bar with a shadow once scrolled past it. Hides on scroll-down,
+ * reveals on scroll-up, in whichever background state matches the current
+ * scroll position — so a reveal near the top comes back transparent, a
+ * reveal further down comes back solid.
+ */
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -55,7 +63,7 @@ export default function Nav() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container-rccl flex items-center justify-between h-16 md:h-20">
+      <div className="container-rccl flex items-center justify-between h-20 md:h-24">
         <Link href="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
           <Image
             src="/rccl-logo-mark.png"
@@ -65,10 +73,6 @@ export default function Nav() {
             priority
             className="h-10 md:h-12 w-auto shrink-0"
           />
-          {/* Same font size on both lines. The width difference is corrected
-              with letter-spacing, not font-size: "RAMMED EARTH" keeps
-              tracking-wide, "CONSTRUCTION CO. LTD" uses tracking-normal so
-              the longer string doesn't blow out past the first line. */}
           <span className="flex flex-col justify-center leading-none">
             <span className="font-display font-semibold text-signal text-sm md:text-lg tracking-wide">
               RAMMED EARTH
@@ -78,73 +82,53 @@ export default function Nav() {
                 solid ? "text-ink" : "text-white"
               }`}
             >
-              CONSTRUCTION LTD
+              Construction Ltd
             </span>
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-1">
-          {links.map((l) => {
-            const active = l.href === "/" ? pathname === "/" : pathname?.startsWith(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className={`text-sm font-medium tracking-wide whitespace-nowrap rounded-full px-6 py-3 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 ${
-                  active
-                    ? "bg-signal text-white"
-                    : solid
-                    ? "text-ink hover:bg-signal hover:text-white active:bg-signal active:text-white"
-                    : "text-white hover:bg-signal hover:text-white active:bg-signal active:text-white"
-                }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden xl:block">
+        <div className="flex items-center gap-3 md:gap-4">
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-signal text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink active:bg-ink transition-colors duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+            className="hidden xl:inline-flex items-center rounded-full bg-signal text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink active:bg-ink transition-colors duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
           >
-            Get a Quote
+            Contact Us
           </Link>
-        </div>
 
-        <button
-          className={`xl:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full transition-colors duration-200 ${
-            solid ? "hover:bg-signal/10 active:bg-signal/20" : "hover:bg-white/15 active:bg-white/25"
-          }`}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span
-            className={`block h-[2px] w-5 transition-[transform,background-color] duration-300 ${solid ? "bg-ink" : "bg-white"} ${
-              open ? "translate-y-2 rotate-45" : ""
+          <button
+            className={`relative flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 shrink-0 ${
+              solid ? "bg-[#F1F0EC] hover:bg-signal/15 active:bg-signal/25" : "hover:bg-white/15 active:bg-white/25"
             }`}
-          />
-          <span
-            className={`block h-[2px] w-5 transition-[opacity,background-color] duration-300 ${solid ? "bg-ink" : "bg-white"} ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-[2px] w-5 transition-[transform,background-color] duration-300 ${solid ? "bg-ink" : "bg-white"} ${
-              open ? "-translate-y-2 -rotate-45" : ""
-            }`}
-          />
-        </button>
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="flex flex-col justify-center items-center gap-1.5 w-4 h-4">
+              <span
+                className={`block h-[1.5px] w-4 transition-[transform,background-color] duration-300 ${
+                  solid ? "bg-ink" : "bg-white"
+                } ${open ? "translate-y-[6.5px] rotate-45" : ""}`}
+              />
+              <span
+                className={`block h-[1.5px] w-4 transition-[opacity,background-color] duration-300 ${
+                  solid ? "bg-ink" : "bg-white"
+                } ${open ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block h-[1.5px] w-4 transition-[transform,background-color] duration-300 ${
+                  solid ? "bg-ink" : "bg-white"
+                } ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="xl:hidden border-t border-line bg-white">
+        <div className="border-t border-line bg-white">
           <nav className="container-rccl flex flex-col py-4">
             {links.map((l) => {
-              const active = l.href === "/" ? pathname === "/" : pathname?.startsWith(l.href);
+              const active = pathname?.startsWith(l.href);
               return (
                 <Link
                   key={l.href}
@@ -162,9 +146,9 @@ export default function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-signal text-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] active:bg-ink transition-colors"
+              className="mt-4 inline-flex items-center justify-center rounded-full bg-signal text-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] xl:hidden"
             >
-              Get a Quote
+              Contact Us
             </Link>
           </nav>
         </div>

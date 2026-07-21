@@ -1,145 +1,130 @@
 import Link from "next/link";
 import Image from "next/image";
 import RammedEarthLayers from "./RammedEarthLayers";
-import { whatsappLink } from "@/lib/whatsapp";
 
-// Full sitemap, kept as a quiet row in the legal bar so internal linking
-// and SEO value aren't lost now that the main footer grid is contact-led.
-const siteLinks = [
+const pagesColumn = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "What We Do" },
   { href: "/about", label: "About Us" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/sustainability", label: "Sustainability" },
-  { href: "/events", label: "Events" },
-  { href: "/shop", label: "Shop" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/portfolio", label: "Projects" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ];
+
+const otherPagesColumn = [
+  { href: "/sustainability", label: "Sustainability" },
+  { href: "/careers", label: "Careers" },
+  { href: "/shop", label: "Shop" },
+  { href: "/events", label: "Events" },
+  { href: "#", label: "Privacy Policy" },
+];
+
+const phoneNumbers = [
+  { display: "+211 92 407 8083", href: "tel:+211924078083" },
+  { display: "+211 92 322 8220", href: "tel:+211923228220" },
+];
+
+const email = "rammedearth.co@gmail.com";
 
 export default function Footer() {
   return (
     <footer className="bg-ink text-white mt-24">
       <RammedEarthLayers bandCount={10} height={36} animate={false} />
 
-      <div className="container-rccl py-14 md:py-16">
-        <div className="grid md:grid-cols-4 gap-10 md:gap-8">
-          {/* Column 1 — Brand */}
+      <div className="container-rccl py-16 md:py-20">
+        <div className="grid md:grid-cols-4 gap-12 md:gap-8">
           <div>
-            <Image
-              src="/rccl-logo-mark.png"
-              alt="RCCL — Rammed Earth Construction Company Limited"
-              width={327}
-              height={326}
-              className="h-14 md:h-16 w-auto mb-4"
-            />
-            <p className="text-sm text-white/60 max-w-[220px] leading-relaxed mb-5">
-              Build Differently
+            <div className="flex items-center gap-2.5 mb-6">
+              <Image
+                src="/rccl-logo-mark.png"
+                alt="RCCL - Rammed Earth Construction Company Limited"
+                width={327}
+                height={326}
+                className="h-9 w-auto"
+              />
+              <span className="flex flex-col justify-center leading-none">
+                <span className="font-display font-bold text-signal text-sm tracking-wide">
+                  RAMMED EARTH
+                </span>
+                <span className="font-display font-bold text-sm tracking-normal mt-1 text-white">
+                  Construction Ltd
+                </span>
+              </span>
+            </div>
+            <p className="text-white/60 leading-relaxed max-w-[240px] mb-8">
+              REC Ltd is a construction company established in 2022, built around a commitment to sustainable, innovative building methods — with rammed earth construction as its defining specialty.
             </p>
-            <div className="flex gap-3">
-              <SocialIcon href="https://instagram.com/[X]" label="RCCL on Instagram">
-                <InstagramIcon />
-              </SocialIcon>
+            <h4 className="text-sm font-semibold text-white mb-2">Address</h4>
+            <p className="text-white/60 leading-relaxed">
+              Cyerdit Plaza, Juba Town
+              <br />
+              Juba, South Sudan
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-white mb-5">Pages</h4>
+            <ul className="space-y-3">
+              {pagesColumn.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-white/65 hover:text-signal transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-white mb-5">Other Pages</h4>
+            <ul className="space-y-3">
+              {otherPagesColumn.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className="text-white/65 hover:text-signal transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-white mb-2">Call Us</h4>
+            <ul className="space-y-1">
+              {phoneNumbers.map((p) => (
+                <li key={p.href}>
+                  <a href={p.href} className="text-white/65 hover:text-signal transition-colors">
+                    {p.display}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="text-base font-semibold text-white mb-2 mt-6">Email Us</h4>
+            <a href={`mailto:${email}`} className="text-white/65 hover:text-signal transition-colors">
+              {email}
+            </a>
+
+            <div className="flex gap-3 mt-6">
               <SocialIcon href="https://facebook.com/[X]" label="RCCL on Facebook">
                 <FacebookIcon />
               </SocialIcon>
               <SocialIcon href="https://linkedin.com/company/[X]" label="RCCL on LinkedIn">
                 <LinkedInIcon />
               </SocialIcon>
+              <SocialIcon href="https://instagram.com/[X]" label="RCCL on Instagram">
+                <InstagramIcon />
+              </SocialIcon>
               <SocialIcon href="https://youtube.com/@[X]" label="RCCL on YouTube">
                 <YouTubeIcon />
               </SocialIcon>
             </div>
           </div>
-
-          {/* Column 2 — Juba Office */}
-          <div>
-            <h4 className="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/90 mb-5">
-              Juba Office
-            </h4>
-            <ul className="space-y-3 text-sm text-white/65">
-              <li>
-                <a href="tel:+211[X][X]" className="hover:text-signal transition-colors">
-                  +211 924 078 083 | +211 923 228 220
-                </a>
-              </li>
-              <li>
-                <a href="mailto:info@rccl.co.ss" className="hover:text-signal transition-colors">
-                  rammedearth.co@gmail.com
-                </a>
-              </li>
-              <li className="text-white/55 leading-relaxed pt-1">Cyerdit Plaza, Juba Town, South Sudan</li>
-            </ul>
-          </div>
-
-          {/* Column 3 — General Enquiries */}
-          <div>
-            <h4 className="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/90 mb-5">
-              General Enquiries
-            </h4>
-            <ul className="space-y-3 text-sm text-white/65">
-              <li>
-                <a href="mailto:info@rccl.co.ss" className="hover:text-signal transition-colors">
-                  rammedearth.co@gmail.com
-                </a>
-              </li>
-              <li className="text-white/55">Mon &ndash; Fri, 8:00 &ndash; 17:00</li>
-              <li className="text-white/55 pt-1">We respond within 1 business day.</li>
-            </ul>
-          </div>
-
-          {/* Column 4 — Start a Project (CTA) */}
-          <div>
-            <h4 className="text-[11px] uppercase tracking-[0.14em] font-semibold text-white/90 mb-5">
-              Ready to build?
-            </h4>
-            <p className="text-sm text-white/60 mb-4 max-w-[220px]">
-              WhatsApp us for the fastest response.
-            </p>
-            <a
-              href={whatsappLink("Hello RECL, I'd like to ask about a project.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-signal text-white px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-white hover:text-ink transition-colors duration-200 mb-3"
-            >
-              <PhoneIcon className="w-4 h-4" />
-              WhatsApp RECL
-            </a>
-            <Link
-              href="/contact"
-              className="flex items-center justify-center gap-2 border border-white/25 text-white px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] hover:border-white transition-colors duration-200"
-            >
-              Request a Quote
-            </Link>
-          </div>
         </div>
 
-        {/* Sitemap row — quiet, keeps every page linked from the footer */}
-        <nav className="flex flex-wrap gap-x-7 gap-y-3 mt-12 pt-8 border-t border-white/15 text-xs text-white/45">
-          {siteLinks.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-white transition-colors">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-
-      {/* Legal bar — separate, quiet, white */}
-      <div className="bg-white text-ink">
-        <div className="container-rccl py-5 flex flex-col md:flex-row gap-3 md:items-center md:justify-between text-xs">
-          <div className="flex gap-5 text-ink/55">
-            {/* [X] — point these at real pages once Disclaimer / Privacy Policy content exists */}
-            <a href="#" className="hover:text-ink transition-colors">
-              Disclaimer
-            </a>
-            <span className="text-ink/25">|</span>
-            <a href="#" className="hover:text-ink transition-colors">
-              Privacy Policy
-            </a>
-          </div>
-          <div className="text-ink/40">
-            &copy; {new Date().getFullYear()} Rammed Earth Construction Co. Ltd. All rights reserved.
-          </div>
+        <div className="mt-16 pt-8 border-t border-white/15 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm">
+          <span className="text-white/50">
+            &copy; {new Date().getFullYear()} Rammed Earth Construction Ltd. All rights reserved.
+          </span>
         </div>
       </div>
     </footer>
@@ -153,7 +138,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="w-9 h-9 flex items-center justify-center border border-white/25 text-white/80 hover:border-signal hover:text-signal transition-colors"
+      className="w-10 h-10 rounded-full flex items-center justify-center border border-white/25 text-white/80 hover:border-signal hover:text-signal transition-colors"
     >
       {children}
     </a>
@@ -188,14 +173,6 @@ function YouTubeIcon() {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
       <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
-    </svg>
-  );
-}
-
-function PhoneIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={`${className} fill-current`} aria-hidden="true">
-      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1.1.5 1.1 1.1V20c0 .6-.5 1.1-1.1 1.1C10.6 21.1 2.9 13.4 2.9 3.2 2.9 2.6 3.4 2 4 2h3.4c.6 0 1.1.5 1.1 1.1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z" />
     </svg>
   );
 }

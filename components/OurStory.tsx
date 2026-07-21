@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Section, GhostLink } from "./UI";
+import { Section, GhostLink, SectionKicker } from "./UI";
 
 /**
  * Replaces the earlier "Why Rammed Earth" explainer with RCCL's real
@@ -15,10 +15,11 @@ import { Section, GhostLink } from "./UI";
 export default function OurStory() {
   return (
     <Section className="bg-[#F7F6F3]">
-      <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
+      <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20">
         <div>
+          <SectionKicker index="02" label="About Us" />
           <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05] mb-6">
-            About Us
+            Our Story
           </h2>
           <p className="text-ink/75 leading-relaxed mb-5">
             Rammed Earth Construction Company Limited: Founded in 2022 with the commitment to deliver unparalleled innovative and

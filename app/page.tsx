@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-
+import TrustStrip from "@/components/TrustStrip";
 import ServicesGrid from "@/components/ServicesGrid";
 import OurStory from "@/components/OurStory";
 import FeaturedProjects from "@/components/FeaturedProjects";
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      
+      <TrustStrip />
       <ServicesGrid />
       <OurStory />
       <FeaturedProjects />

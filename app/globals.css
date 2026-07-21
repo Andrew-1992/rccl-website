@@ -1,12 +1,12 @@
 @import "tailwindcss";
-
+ 
 :root {
   --color-white: #ffffff;
   --color-ink: #0a0a0a;
   --color-signal: #c4272b;
   --color-line: #dcdad4;
 }
-
+ 
 @theme inline {
   --color-white: var(--color-white);
   --color-ink: var(--color-ink);
@@ -15,36 +15,37 @@
   --font-display: var(--font-display-face);
   --font-body: var(--font-display-face);
   --font-serif: var(--font-body-serif);
+  --radius-none: 0px;
 }
-
+ 
 html {
   scroll-behavior: smooth;
 }
-
+ 
 body {
   background: var(--color-white);
   color: var(--color-ink);
   font-family: var(--font-display-face), -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
 }
-
+ 
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display-face), -apple-system, "Segoe UI", sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
-
+ 
 /* Available for copy that wants the editorial serif treatment (e.g. long
    testimonial quotes) instead of the site-wide Inter sans. */
 .font-body-serif {
   font-family: var(--font-body-serif), Georgia, serif;
 }
-
+ 
 ::selection {
   background: var(--color-signal);
   color: var(--color-white);
 }
-
+ 
 /* Rammed-earth layer reveal — the signature scroll animation */
 @keyframes layerRise {
   from {
@@ -56,25 +57,25 @@ h1, h2, h3, h4, .font-display {
     opacity: 1;
   }
 }
-
+ 
 .layer-band {
   transform-origin: bottom;
   animation: layerRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-
+ 
 .fade-rise {
   opacity: 0;
   transform: translateY(18px);
   animation: fadeRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-
+ 
 @keyframes fadeRise {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
+ 
 @media (prefers-reduced-motion: reduce) {
   .layer-band,
   .fade-rise {
@@ -86,7 +87,7 @@ h1, h2, h3, h4, .font-display {
     scroll-behavior: auto;
   }
 }
-
+ 
 .container-rccl {
   max-width: 1440px;
   margin-left: auto;
@@ -94,10 +95,11 @@ h1, h2, h3, h4, .font-display {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-
+ 
 @media (min-width: 768px) {
   .container-rccl {
     padding-left: 3rem;
     padding-right: 3rem;
   }
 }
+ 

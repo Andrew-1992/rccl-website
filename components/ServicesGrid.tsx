@@ -1,25 +1,44 @@
 import Link from "next/link";
 import { services } from "@/content/services";
-import { Section, SectionKicker } from "./UI";
+import { Section, SectionKicker, GhostLink } from "./UI";
+
+// Shortened display name for this one card only — the full "Project
+// Management & Consultation" name (used for the page title, SEO, and
+// everywhere else it's referenced) lives untouched in content/services.ts.
+// This map is a display-only override for the homepage grid.
+const shortNameBySlug: Record<string, string> = {
+  "project-management-consultation": "Project Management",
+};
 
 /**
  * Four equal-weight cards — the flagship (Rammed Earth Construction) still
  * carries a small "FLAGSHIP SERVICE" badge so its priority isn't lost, but
- * the card itself is the same size as the other three, per the "make it
- * the same size" direction. No photography in this grid (removed) — this
- * is a clean, text-led index; the actual project photography lives on
- * each service's own detail page and in the Portfolio section.
+ * the card itself is the same size as the other three. Header row matches
+ * the CitiRise reference: eyebrow + heading on the left, supporting
+ * paragraph + "View All Services" link on the right. No icons — removed
+ * per direction; badges (where present) sit on their own at the top.
  */
 export default function ServicesGrid() {
   return (
     <Section>
-      
-      <h2 className="font-display text-3xl md:text-5xl font-bold max-w-2xl leading-[1.05] mb-12">
-        What We Do
-      </h2>
+      <div className="grid md:grid-cols-2 gap-8 mb-12 items-end">
+        <div>
+          <SectionKicker index="01" label="Services" />
+          <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05]">
+            Our Construction Services
+          </h2>
+        </div>
+        <div className="flex flex-col md:items-start gap-6">
+          <p className="text-ink/65 leading-relaxed max-w-md">
+            From rammed earth builds to full project management, we deliver
+            excellence at every phase of the build.
+          </p>
+          <GhostLink href="/services">View All Services</GhostLink>
+        </div>
+      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {services.map((s, i) => (
+        {services.map((s) => (
           <Link
             key={s.slug}
             href={`/services/${s.slug}`}
@@ -33,18 +52,13 @@ export default function ServicesGrid() {
             />
 
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold text-signal tracking-[0.1em] transition-colors duration-300">
-                  {`0${i + 1}`}
+              {s.flagship && (
+                <span className="inline-block text-[10px] font-semibold tracking-[0.14em] bg-signal text-white px-2.5 py-1 mb-5">
+                  FLAGSHIP SERVICE
                 </span>
-                {s.flagship && (
-                  <span className="inline-block text-[10px] font-semibold tracking-[0.14em] bg-signal text-white px-2.5 py-1">
-                    FLAGSHIP SERVICE
-                  </span>
-                )}
-              </div>
+              )}
               <p className="font-display text-xl md:text-2xl font-bold leading-snug text-ink group-hover:text-white transition-colors duration-300">
-                {s.name}
+                {shortNameBySlug[s.slug] ?? s.name}
               </p>
               <p className="mt-4 text-sm md:text-base text-ink/65 group-hover:text-white/70 transition-colors duration-300 leading-relaxed">
                 {s.oneLiner}
