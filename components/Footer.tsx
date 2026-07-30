@@ -1,21 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-import RammedEarthLayers from "./RammedEarthLayers";
 
-const pagesColumn = [
-  { href: "/", label: "Home" },
+// Bare, unlabeled link columns (no "Pages" / "Other Pages" headers).
+const columnOne = [
   { href: "/about", label: "About Us" },
-  { href: "/portfolio", label: "Projects" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
-
-const otherPagesColumn = [
+  { href: "/services", label: "What We Build" },
   { href: "/sustainability", label: "Sustainability" },
   { href: "/careers", label: "Careers" },
+];
+
+const columnTwo = [
+  { href: "/portfolio", label: "Projects" },
   { href: "/shop", label: "Shop" },
   { href: "/events", label: "Events" },
-  { href: "#", label: "Privacy Policy" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const phoneNumbers = [
@@ -28,83 +26,81 @@ const email = "rammedearth.co@gmail.com";
 export default function Footer() {
   return (
     <footer className="bg-ink text-white mt-24">
-      <RammedEarthLayers bandCount={10} height={36} animate={false} />
-
       <div className="container-rccl py-16 md:py-20">
         <div className="grid md:grid-cols-4 gap-12 md:gap-8">
+          {/* Column 1 — larger brand block, matching Sundt's mark + wordmark + motto */}
           <div>
-            <div className="flex items-center gap-2.5 mb-6">
-              <Image
-                src="/rccl-logo-mark.png"
-                alt="RCCL - Rammed Earth Construction Company Limited"
-                width={327}
-                height={326}
-                className="h-9 w-auto"
-              />
-              <span className="flex flex-col justify-center leading-none">
-                <span className="font-display font-bold text-signal text-sm tracking-wide">
-                  RAMMED EARTH
-                </span>
-                <span className="font-display font-bold text-sm tracking-normal mt-1 text-white">
-                  Construction Ltd
-                </span>
+            <Image
+              src="/rccl-logo-mark.png"
+              alt="RCCL — Rammed Earth Construction Company Limited"
+              width={327}
+              height={326}
+              className="h-16 w-auto mb-5"
+            />
+            <span className="flex flex-col leading-[1.05] mb-4">
+              <span className="font-display font-bold text-signal text-2xl tracking-wide">
+                RAMMED EARTH
               </span>
-            </div>
-            <p className="text-white/60 leading-relaxed max-w-[240px] mb-8">
-              REC Ltd is a construction company established in 2022, built around a commitment to sustainable, innovative building methods — with rammed earth construction as its defining specialty.
-            </p>
-            <h4 className="text-sm font-semibold text-white mb-2">Address</h4>
-            <p className="text-white/60 leading-relaxed">
-              Cyerdit Plaza, Juba Town
-              <br />
-              Juba, South Sudan
+              <span className="font-display font-bold text-white text-2xl tracking-normal">
+                SOUTH SUDAN
+              </span>
+            </span>
+            <p className="text-white/60 text-sm tracking-wide">
+              Build Differently
             </p>
           </div>
 
-          <div>
-            <h4 className="text-base font-semibold text-white mb-5">Pages</h4>
-            <ul className="space-y-3">
-              {pagesColumn.map((l) => (
+          {/* Column 2 — bare link list */}
+          <nav aria-label="Footer, company">
+            <ul className="space-y-4">
+              {columnOne.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-white/65 hover:text-signal transition-colors">
+                  <Link
+                    href={l.href}
+                    className="text-sm font-medium text-white/85 hover:text-signal transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h4 className="text-base font-semibold text-white mb-5">Other Pages</h4>
-            <ul className="space-y-3">
-              {otherPagesColumn.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} className="text-white/65 hover:text-signal transition-colors">
+          {/* Column 3 — bare link list */}
+          <nav aria-label="Footer, more">
+            <ul className="space-y-4">
+              {columnTwo.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm font-medium text-white/85 hover:text-signal transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
+          {/* Column 4 — direct contact info + Follow Us */}
           <div>
-            <h4 className="text-base font-semibold text-white mb-2">Call Us</h4>
-            <ul className="space-y-1">
+            <ul className="space-y-2 mb-6">
               {phoneNumbers.map((p) => (
                 <li key={p.href}>
-                  <a href={p.href} className="text-white/65 hover:text-signal transition-colors">
+                  <a href={p.href} className="text-sm font-medium text-white/85 hover:text-signal transition-colors">
                     {p.display}
                   </a>
                 </li>
               ))}
+              <li>
+                <a href={`mailto:${email}`} className="text-sm font-medium text-white/85 hover:text-signal transition-colors">
+                  {email}
+                </a>
+              </li>
             </ul>
 
-            <h4 className="text-base font-semibold text-white mb-2 mt-6">Email Us</h4>
-            <a href={`mailto:${email}`} className="text-white/65 hover:text-signal transition-colors">
-              {email}
-            </a>
-
-            <div className="flex gap-3 mt-6">
+            <h4 className="text-sm font-semibold text-white mb-4">Follow Us</h4>
+            <div className="flex gap-3">
               <SocialIcon href="https://facebook.com/[X]" label="RCCL on Facebook">
                 <FacebookIcon />
               </SocialIcon>
@@ -120,10 +116,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 pt-8 border-t border-white/15 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm">
+      {/* Separate bottom bar — distinct background, matching Sundt's split-off copyright strip */}
+      <div className="bg-black/40 border-t border-white/10">
+        <div className="container-rccl py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs">
           <span className="text-white/50">
-            &copy; {new Date().getFullYear()} Rammed Earth Construction Ltd. All rights reserved.
+            Copyright &copy; {new Date().getFullYear()} RAMMED EARTH CONSTRUCTION LTD |All Rights Reserved |{" "}
+            <Link href="#" className="text-signal hover:underline">
+              Privacy Policy
+            </Link>
           </span>
         </div>
       </div>

@@ -2,11 +2,21 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { Section, GhostLink } from "@/components/UI";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import Image from "next/image";
 import { services } from "@/content/services";
 import CTABand from "@/components/CTABand";
 
+// Photos: public/<filename> — mapped by service slug.
+const photoBySlug: Record<string, string> = {
+  "rammed-earth-construction": "rammed-earth-texture.jpg",
+  "general-construction": "service-general-construction.jpg",
+  "architectural-design": "service-architectural-design.jpg",
+  "project-management-consultation": "service-project-management.jpg",
+};
+
+
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Services | Rammed Earth Construction Ltd",
   description:
     "Rammed earth construction, general construction, architectural design, and project management from RCCL — Juba, South Sudan.",
 };
@@ -14,11 +24,11 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <PageHero eyebrow="Services" title="Four capabilities. One accountable team." />
+      <PageHero eyebrow="Services" title="From Soil To Structures" />
 
       <Section className="pb-0 md:pb-0">
         <p className="max-w-2xl text-lg md:text-xl text-ink/75 leading-relaxed">
-          RCCL offers four integrated capabilities, from a sustainable building
+          Rammed Earth Construction Ltd offers four integrated capabilities, from a sustainable building
           method to full project delivery. Rammed earth construction is our
           flagship — the technique we built the company on. General construction,
           architectural design, and project management round it out, so a client
@@ -35,11 +45,13 @@ export default function ServicesPage() {
               className={`grid md:grid-cols-2 bg-white ${s.flagship ? "md:min-h-[440px]" : "md:min-h-[380px]"}`}
             >
               <div className={`order-2 ${i % 2 === 1 ? "md:order-2" : "md:order-1"} relative`}>
-                <PhotoPlaceholder
-                  label={s.flagship ? "Rammed earth wall, close texture" : s.name}
-                  aspect="aspect-auto"
-                  className="h-full min-h-[240px] md:min-h-0"
-                />
+                <Image
+    src={`/${photoBySlug[s.slug]}`}
+    alt={s.name}
+    fill
+    sizes="(min-width: 768px) 50vw, 100vw"
+    className="object-cover"
+  />
               </div>
               <div
                 className={`order-1 ${i % 2 === 1 ? "md:order-1" : "md:order-2"} p-8 md:p-14 flex flex-col justify-center`}

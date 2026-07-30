@@ -11,6 +11,7 @@ export type OutcomeStat = {
 export type Project = {
   slug: string;
   name: string;
+  heroPhoto?: string;
   serviceSlug: string;
   serviceLabel: string;
   location: string;
@@ -50,6 +51,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2025",
     resultLine: "A community arts center designed for Luri County, Juba.",
+    heroPhoto: "peace-garden-arts-center.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Institutional/cultural building design. [X] — construction technique and materials to be confirmed.",
@@ -66,6 +68,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2025",
     resultLine: "A multi-storey residential apartment building in Thongpiny.",
+    heroPhoto: "thongpiny-apartments-detail.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Multi-storey residential construction with landscaped balcony terraces. [X] — structural system to be confirmed.",
@@ -116,6 +119,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2024",
     resultLine: "A mixed apartment and office development in Monrovia, Liberia — RCCL's design work beyond South Sudan.",
+    heroPhoto: "liberty-apartments-offices.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Mixed-use residential and office building with arched, screened facades. [X] — construction technique to be confirmed.",
@@ -132,6 +136,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2024",
     resultLine: "A medical center for women and children on Bor Road.",
+    heroPhoto: "ayendit-medical-center.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Healthcare facility design and construction. [X] — construction technique to be confirmed.",
@@ -148,6 +153,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2024",
     resultLine: "A design proposal for a public hall in the Customs area of Juba.",
+    heroPhoto: "freedom-hall-building-proposal.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Public building design proposal, site plan and massing study. [X] — further detail to be confirmed.",
@@ -182,6 +188,7 @@ export const projects: Project[] = [
     duration: "[X]",
     year: "2023",
     resultLine: "A community hospital serving Melut County, Upper Nile State.",
+    heroPhoto: "melut-county-community-hospital.jpg",
     challenge: "[X] — project brief and challenge to be confirmed.",
     approach: "[X] — design approach to be confirmed.",
     technique: "Healthcare facility design and construction. [X] — construction technique to be confirmed.",

@@ -6,13 +6,6 @@ import Image from "next/image";
 import { projects } from "@/content/projects";
 import { Section, GhostLink, SectionKicker } from "./UI";
 
-/**
- * Photos: public/projects/<filename> — filenames don't follow a fixed
- * convention, so each project's slug is mapped to its actual file here.
- * Add a new line to this map whenever a new featured project needs a
- * photo; if a slug has no entry, nothing renders for that spot (better
- * than a guaranteed-broken image request).
- */
 const photoBySlug: Record<string, string> = {
   "peace-garden-arts-center": "peace-garden.jpg",
   "thongpiny-apartments": "thongpiny.jpg",
@@ -21,12 +14,10 @@ const photoBySlug: Record<string, string> = {
 };
 
 /**
- * Scroll-triggered reveal, matching the same "animate once in view" pattern
- * used by RammedEarthLayers elsewhere on the site: everything renders
- * static (opacity-0, no transform applied yet) on first paint so SSR/CSR
- * match exactly, then an IntersectionObserver flips a single `revealed`
- * flag once the section enters the viewport, and each card's fade-rise
- * animation is staggered off that one flag.
+ * Grid is 2-across on tablet, 4-across on large screens (lg:grid-cols-4) —
+ * all 4 cards sit in a single row on desktop instead of two stacked rows,
+ * so the whole section fits in less vertical scroll. Card internals
+ * (padding, text, gaps) tightened slightly to match the smaller footprint.
  */
 export default function FeaturedProjects() {
   const featured = projects.slice(0, 4);
@@ -52,11 +43,8 @@ export default function FeaturedProjects() {
   return (
     <Section>
       <div ref={sectionRef}>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
-          <div
-            suppressHydrationWarning
-            className={revealed ? "fade-rise" : "opacity-0"}
-          >
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-6">
+          <div suppressHydrationWarning className={revealed ? "fade-rise" : "opacity-0"}>
             <SectionKicker index="03" label="Our Work" />
             <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05]">View Our Recent Projects</h2>
             <p className="mt-4 max-w-xl text-ink/65 leading-relaxed">
@@ -66,7 +54,7 @@ export default function FeaturedProjects() {
           <GhostLink href="/portfolio" className="shrink-0">View All Projects</GhostLink>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4">
           {featured.map((p, i) => {
             const photo = photoBySlug[p.slug];
             return (
@@ -74,38 +62,29 @@ export default function FeaturedProjects() {
                 <div
                   suppressHydrationWarning
                   className={revealed ? "fade-rise" : "opacity-0"}
-                  style={revealed ? { animationDelay: `${i * 100}ms` } : undefined}
+                  style={revealed ? { animationDelay: `${i * 80}ms` } : undefined}
                 >
-                  <div className="flex items-baseline justify-between mb-3">
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-[0.14em] text-ink/45 mb-1">Type</span>
-                      <span className="text-sm font-semibold text-ink">{p.serviceLabel}</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="block text-[10px] uppercase tracking-[0.14em] text-ink/45 mb-1">Project Year</span>
-                      <span className="text-sm font-semibold text-ink">{p.year}</span>
-                    </div>
-                  </div>
-                  <div className="relative aspect-[4/3] overflow-hidden bg-ink/5">
+                  <div className="relative aspect-square overflow-hidden bg-ink/5">
                     {photo && (
                       <Image
                         src={`/projects/${photo}`}
                         alt={p.name}
                         fill
-                        sizes="(min-width: 768px) 50vw, 100vw"
+                        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     )}
-                    <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/50 transition-colors duration-300 flex items-end p-6">
+                    <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/50 transition-colors duration-300 flex items-end p-4">
                       <div className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                        <div className="text-white font-display text-xl font-bold">{p.name}</div>
-                        <div className="text-white/80 text-sm mt-1">{p.resultLine}</div>
+                        <div className="text-white font-display text-sm font-bold leading-snug">{p.name}</div>
+                        <div className="text-white/80 text-xs mt-1">{p.resultLine}</div>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-3 flex items-baseline justify-between">
-                    <span className="font-medium">{p.name}</span>
-                    <span className="text-xs uppercase tracking-[0.08em] text-ink/50">{p.location}</span>
+                  <div className="mt-3">
+                    <span className="font-display text-base font-bold block leading-snug">{p.name}</span>
+                    <span className="text-sm text-ink/55 block mt-0.5">{p.location}</span>
+                    <span className="text-sm text-ink/55 block">{p.year}</span>
                   </div>
                 </div>
               </Link>

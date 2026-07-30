@@ -7,7 +7,7 @@ import { shopCategories } from "@/content/shop";
 import { whatsappLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Shop",
+  title: "Shop | Rammed Earth Construction Ltd",
   description: "Construction materials supply from RCCL — rammed earth stabilizer mix, aggregate, formwork, roofing, and finishing materials in Juba, South Sudan.",
 };
 

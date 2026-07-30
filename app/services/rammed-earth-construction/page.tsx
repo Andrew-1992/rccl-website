@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import Image from "next/image";
 import { Section, Eyebrow, PrimaryButton } from "@/components/UI";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
-import RammedEarthLayers from "@/components/RammedEarthLayers";
 import ServiceProcess from "@/components/ServiceProcess";
 import RelatedProjects from "@/components/RelatedProjects";
 import { getServiceBySlug } from "@/content/services";
@@ -24,7 +24,6 @@ export default function RammedEarthConstructionPage() {
       </PageHero>
 
       {/* The signature motif gets its most prominent placement on this page */}
-      <RammedEarthLayers bandCount={26} height={140} redBandIndex={4} />
 
       <Section>
         <div className="grid lg:grid-cols-2 gap-14">
@@ -58,7 +57,13 @@ export default function RammedEarthConstructionPage() {
               ))}
             </ul>
           </div>
-          <PhotoPlaceholder label="Rammed earth wall, close texture detail" aspect="aspect-[4/5]" />
+          <Image
+    src="/rammed-earth-texture.png"
+    alt="Close-up of rammed earth wall texture"
+    fill
+    sizes="(min-width: 1024px) 50vw, 100vw"
+    className="object-cover"
+  />
         </div>
       </Section>
 
@@ -87,7 +92,6 @@ export default function RammedEarthConstructionPage() {
         </ul>
       </Section>
 
-      <RammedEarthLayers bandCount={26} height={64} animate={false} />
 
       <RelatedProjects slugs={service.relatedProjectSlugs} />
 

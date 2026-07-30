@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import { whatsappLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact | Rammed Earth Construction Ltd",
   description: "Contact RCCL in Juba, South Sudan — request a quote by WhatsApp, form, phone, or email. We respond within 1 business day.",
 };
 
@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow="Contact Us"
         title="Let's talk about your project."
         intro="WhatsApp is the fastest way to reach us. If you'd rather send full project details in one go, use the form below — we respond within 1 business day either way."
       />
@@ -38,9 +38,9 @@ export default function ContactPage() {
             </a>
 
             <div className="border border-line p-6 space-y-4 text-sm">
-              <Row label="Office" value="[X] Street, Juba, South Sudan" />
-              <Row label="Phone" value="+211 [X] [X]" />
-              <Row label="Email" value="info@rccl.co.ss" href="mailto:info@rccl.co.ss" />
+              <Row label="Office" value="Cyerdit Plaza, Juba Town South Sudan" />
+              <Row label="Phone" value="+211 924 078 083" />
+              <Row label="Email" value="rammedearth.co@gmail.com" href="mailto:rammedearth.co@gmail.com" />
               <Row label="Response time" value="Within 1 business day" />
             </div>
 

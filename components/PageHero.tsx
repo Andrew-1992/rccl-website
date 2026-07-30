@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import RammedEarthLayers from "./RammedEarthLayers";
 
 export default function PageHero({
   eyebrow,
@@ -26,7 +25,6 @@ export default function PageHero({
         )}
         {children}
       </div>
-      <RammedEarthLayers bandCount={16} height={56} animate={false} />
     </section>
   );
 }

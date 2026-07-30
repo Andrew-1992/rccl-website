@@ -6,7 +6,7 @@ import { events } from "@/content/events";
 import { whatsappLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Events",
+  title: "Events | Rammed Earth Construction Ltd",
   description: "Upcoming and past events from RCCL — site visits, apprenticeship open days, and industry expos in Juba, South Sudan.",
 };
 

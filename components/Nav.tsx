@@ -65,24 +65,25 @@ export default function Nav() {
     >
       <div className="container-rccl flex items-center justify-between h-20 md:h-24">
         <Link href="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
-          <Image
-            src="/rccl-logo-mark.png"
-            alt="RCCL logo mark"
-            width={327}
-            height={326}
-            priority
-            className="h-10 md:h-12 w-auto shrink-0"
-          />
+          <span className="relative h-14 md:h-16 w-14 md:w-16 shrink-0">
+            <Image
+              src="/rccl-logo-mark.png"
+              alt="RCCL logo mark"
+              fill
+              priority
+              className="object-contain"
+            />
+          </span>
           <span className="flex flex-col justify-center leading-none">
             <span className="font-display font-semibold text-signal text-sm md:text-lg tracking-wide">
               RAMMED EARTH
             </span>
             <span
-              className={`font-display font-semibold text-sm md:text-lg tracking-normal mt-1 transition-colors duration-300 ${
+              className={`font-display font-semibold text-sm md:text-lg tracking-wide mt-1 transition-colors duration-300 ${
                 solid ? "text-ink" : "text-white"
               }`}
             >
-              Construction Ltd
+              SOUTH SUDAN
             </span>
           </span>
         </Link>

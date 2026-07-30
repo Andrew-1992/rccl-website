@@ -17,12 +17,12 @@ export default function OurStory() {
     <Section className="bg-[#F7F6F3]">
       <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20">
         <div>
-          <SectionKicker index="02" label="About Us" />
+          <SectionKicker index="01" label="About Us" />
           <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05] mb-6">
             Our Story
           </h2>
           <p className="text-ink/75 leading-relaxed mb-5">
-            Rammed Earth Construction Company Limited: Founded in 2022 with the commitment to deliver unparalleled innovative and
+            Rammed Earth Construction Limited: Founded in 2022 with the commitment to deliver unparalleled innovative and
             sustainable construction techniques, with a core focus on the rammed
             earth construction technique.
           </p>

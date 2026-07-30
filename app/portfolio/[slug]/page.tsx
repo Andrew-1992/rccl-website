@@ -4,6 +4,7 @@ import Link from "next/link";
 import { projects, getProjectBySlug, getNextProject } from "@/content/projects";
 import { Section, Eyebrow, GhostLink } from "@/components/UI";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import Image from "next/image";
 import ProjectGallery from "@/components/ProjectGallery";
 import NextProjectTeaser from "@/components/NextProjectTeaser";
 import CTABand from "@/components/CTABand";
@@ -49,7 +50,13 @@ export default async function ProjectDetailPage({
     <>
       {/* 1. HEADER — project name, location, large hero photo */}
       <section className="relative bg-ink text-white">
-        <PhotoPlaceholder label={`${project.name} — hero`} aspect="aspect-[16/9] md:aspect-[21/9]" className="opacity-90" />
+        <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
+          {project.heroPhoto ? (
+            <Image src={`/${project.heroPhoto}`} alt={project.name} fill sizes="100vw" className="object-cover opacity-90" />
+          ) : (
+            <PhotoPlaceholder label={`${project.name} — hero`} aspect="aspect-[16/9] md:aspect-[21/9]" className="opacity-90" />
+          )}
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0">
           <div className="container-rccl pb-8 md:pb-12">

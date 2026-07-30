@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Project } from "@/content/projects";
 import { Service } from "@/content/services";
 import PhotoPlaceholder from "./PhotoPlaceholder";
@@ -35,8 +36,18 @@ export default function ProjectsGrid({
         <div className="grid md:grid-cols-2 gap-8 md:gap-10">
           {filtered.map((p) => (
             <Link key={p.slug} href={`/portfolio/${p.slug}`} className="group block">
-              <div className="relative overflow-hidden">
-                <PhotoPlaceholder label={p.name} aspect="aspect-[4/3]" className="transition-transform duration-500 group-hover:scale-[1.03]" />
+              <div className="relative aspect-[4/3] overflow-hidden">
+                {p.heroPhoto ? (
+                  <Image
+                    src={`/${p.heroPhoto}`}
+                    alt={p.name}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <PhotoPlaceholder label={p.name} aspect="aspect-[4/3]" className="transition-transform duration-500 group-hover:scale-[1.03]" />
+                )}
               </div>
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div>

@@ -1,12 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
-import RammedEarthLayers from "./RammedEarthLayers";
 
 /**
- * Full-bleed background media, text overlaid on top — the split-screen
- * layout has been removed per direction. Video wins automatically if
- * present.
+ * Full-bleed background media, text overlaid on top. Video wins
+ * automatically if present.
  *  - Video: drop an .mp4 at public/hero-bg.mp4 (compressed, ~15-20s loop,
  *    muted, under ~8MB — this is a bandwidth-constrained market).
  *  - Image: public/hero-bg.jpg is always used as the <video> poster and as
@@ -46,18 +44,14 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
       </div>
 
-      <div className="container-rccl pt-28 pb-16 md:py-24 relative z-10 text-left w-full">
-        <h1 className="font-display font-bold leading-[1.05] tracking-tight text-[9vw] sm:text-[6vw] md:text-[3.6vw] lg:text-5xl max-w-2xl fade-rise" style={{ animationDelay: "80ms" }}>
-          We Design and Build
-          <br />
-          Using the Earth
+      <div className="container-rccl pt-12 pb-16 md:py-24 relative z-10 text-left w-full">
+        <h1 className="font-display font-bold leading-[1.05] tracking-tight text-[10vw] sm:text-[7vw] md:text-[4.2vw] lg:text-6xl max-w-2xl fade-rise" style={{ animationDelay: "80ms" }}>
+          We Build to Make a Difference
         </h1>
-        <p className="mt-8 max-w-xl text-base md:text-lg text-white/80 leading-relaxed fade-rise" style={{ animationDelay: "160ms" }}>
-          Rammed Earth Construction Co. Ltd partners with clients to build rammed earth structures that are environmentally sustainable.
-        </p>
+        <p className="mt-5 max-w-xl text-base md:text-lg tracking-normal text-white/80 leading-relaxed fade-rise" style={{ animationDelay: "160ms" }}>
+         <strong className="font-semibold text-white">Rammed Earth Construction Ltd</strong> partners with clients to build rammed earth structures that are environmentally sustainable.</p>
       </div>
 
-      <RammedEarthLayers bandCount={18} height={90} redBandIndex={2} className="absolute bottom-0 left-0 right-0 z-10" />
     </section>
   );
 }

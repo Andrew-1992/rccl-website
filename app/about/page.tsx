@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { Section, Eyebrow } from "@/components/UI";
-import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import Image from "next/image";
 import CTABand from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us | Rammed Earth Construction Ltd",
   description: "The story, leadership, and values behind RCCL — Rammed Earth Construction Company Limited, Juba, South Sudan.",
 };
 
@@ -29,9 +29,9 @@ const values = [
 ];
 
 const leaders = [
-  { name: "[Name]", role: "Founder & Managing Director" },
-  { name: "[Name]", role: "Head of Structural Engineering" },
-  { name: "[Name]", role: "Head of Architectural Design" },
+  { name: "Chatim Gai", role: "Founder & Engineer", photo: "team-chatim-gai.jpg" },
+  { name: "Adhar Machar", role: "Architect", photo: "team-adhar-machar.jpg" },
+  { name: "Aluong Thereza", role: "Admin & Finance", photo: "team-aluong-thereza.jpg" },
 ];
 
 const certifications = [
@@ -44,7 +44,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About RCCL"
+        eyebrow="About Us"
         title="We build to make a difference."
         intro="A multidisciplinary firm dedicated to addressing diverse design and construction requirements across various regions of South Sudan — built around advanced rammed earth technology and a spectrum of architecture rooted in research."
       />
@@ -92,7 +92,9 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          <PhotoPlaceholder label="RCCL founding team on site" aspect="aspect-[4/5]" />
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image src="/about-image.jpg" alt="Urban planning model" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          </div>
         </div>
       </Section>
 
@@ -102,7 +104,9 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-3 gap-8">
           {leaders.map((l) => (
             <div key={l.name}>
-              <PhotoPlaceholder label={l.name} aspect="aspect-[3/4]" className="mb-4" />
+              <div className="relative aspect-[3/4] overflow-hidden mb-4">
+                <Image src={`/${l.photo}`} alt={l.name} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+              </div>
               <h3 className="font-display text-lg font-bold">{l.name}</h3>
               <p className="text-sm text-ink/60">{l.role}</p>
             </div>
@@ -141,10 +145,10 @@ export default function AboutPage() {
         <h2 className="font-display text-2xl md:text-4xl font-bold max-w-2xl mx-auto mb-8">
           Want to help build it?
         </h2>
-        <a
+        
           href="/careers"
           className="inline-flex items-center justify-center rounded-full border border-ink text-ink px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink hover:text-white transition-colors duration-200"
-        >
+        <a>
           Work With Us
         </a>
       </Section>

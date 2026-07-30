@@ -1,5 +1,4 @@
 import { PrimaryButton } from "@/components/UI";
-import RammedEarthLayers from "@/components/RammedEarthLayers";
 
 export default function NotFound() {
   return (
@@ -15,7 +14,6 @@ export default function NotFound() {
         </p>
         <PrimaryButton href="/">Back to homepage</PrimaryButton>
       </div>
-      <RammedEarthLayers bandCount={16} height={56} animate={false} />
     </section>
   );
 }

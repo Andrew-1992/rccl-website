@@ -5,27 +5,24 @@ import { Section, SectionKicker, GhostLink } from "./UI";
 // Shortened display name for this one card only — the full "Project
 // Management & Consultation" name (used for the page title, SEO, and
 // everywhere else it's referenced) lives untouched in content/services.ts.
-// This map is a display-only override for the homepage grid.
 const shortNameBySlug: Record<string, string> = {
   "project-management-consultation": "Project Management",
 };
 
 /**
- * Four equal-weight cards — the flagship (Rammed Earth Construction) still
- * carries a small "FLAGSHIP SERVICE" badge so its priority isn't lost, but
- * the card itself is the same size as the other three. Header row matches
- * the CitiRise reference: eyebrow + heading on the left, supporting
- * paragraph + "View All Services" link on the right. No icons — removed
- * per direction; badges (where present) sit on their own at the top.
+ * Borderless line-list treatment, matching the Construct L reference: a
+ * thin red line sits above each numbered item ("/01", "/02"...), no card
+ * boxes at all. Header row unchanged: eyebrow + heading left, paragraph +
+ * "View All Services" link right.
  */
 export default function ServicesGrid() {
   return (
     <Section>
-      <div className="grid md:grid-cols-2 gap-8 mb-12 items-end">
+      <div className="grid md:grid-cols-2 gap-8 mb-14 items-end">
         <div>
-          <SectionKicker index="01" label="Services" />
+          <SectionKicker index="02" label="Services" />
           <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05]">
-            Our Construction Services
+            Discover Our Service Offerings
           </h2>
         </div>
         <div className="flex flex-col md:items-start gap-6">
@@ -37,35 +34,28 @@ export default function ServicesGrid() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {services.map((s) => (
-          <Link
-            key={s.slug}
-            href={`/services/${s.slug}`}
-            className="group relative bg-white border border-ink/12 p-8 md:p-10 flex flex-col justify-between min-h-[260px] md:min-h-[300px] overflow-hidden transition-all duration-300 ease-out hover:border-ink hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(10,10,10,0.25)] hover:bg-ink"
-          >
-            {/* Subtle red edge that slides in from the left on hover — a
-                quieter, more premium alternative to a full color flip */}
-            <span
-              className="absolute left-0 top-0 bottom-0 w-[3px] bg-signal origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out"
-              aria-hidden="true"
-            />
+      <div className="grid md:grid-cols-2 gap-x-12 gap-y-14">
+        {services.map((s, i) => (
+          <Link key={s.slug} href={`/services/${s.slug}`} className="group block">
+            <div className="w-12 h-[3px] bg-signal mb-6 transition-all duration-300 group-hover:w-20" />
+            <span className="font-display text-signal text-lg font-bold">{`/0${i + 1}`}</span>
 
-            <div>
-              {s.flagship && (
-                <span className="inline-block text-[10px] font-semibold tracking-[0.14em] bg-signal text-white px-2.5 py-1 mb-5">
-                  FLAGSHIP SERVICE
-                </span>
-              )}
-              <p className="font-display text-xl md:text-2xl font-bold leading-snug text-ink group-hover:text-white transition-colors duration-300">
+            <div className="flex items-start justify-between gap-4 mt-3">
+              <p className="font-display text-2xl md:text-3xl font-bold leading-snug text-ink group-hover:text-signal transition-colors duration-300">
                 {shortNameBySlug[s.slug] ?? s.name}
               </p>
-              <p className="mt-4 text-sm md:text-base text-ink/65 group-hover:text-white/70 transition-colors duration-300 leading-relaxed">
-                {s.oneLiner}
-              </p>
+              {s.flagship && (
+                <span className="shrink-0 inline-block text-[10px] font-semibold tracking-[0.14em] bg-signal text-white px-2.5 py-1 mt-1">
+                  FLAGSHIP
+                </span>
+              )}
             </div>
 
-            <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-ink group-hover:text-white transition-colors duration-300 w-fit">
+            <p className="mt-4 text-sm md:text-base text-ink/65 leading-relaxed max-w-md">
+              {s.oneLiner}
+            </p>
+
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink/70 group-hover:text-signal transition-colors duration-300">
               Learn more
               <span
                 aria-hidden="true"
