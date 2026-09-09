@@ -6,12 +6,9 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/portfolio", label: "Projects" },
-  { href: "/shop", label: "Shop" },
+  { href: "/", label: "Home" },
   { href: "/events", label: "Events" },
-  { href: "/contact", label: "Contact" },
+  { href: "/sustainability", label: "Sustainability" },
 ];
 
 /**
@@ -20,10 +17,10 @@ const links = [
  * a white bar with a shadow once scrolled past it. Hides on scroll-down,
  * reveals on scroll-up, in whichever background state matches the current
  * scroll position — so a reveal near the top comes back transparent, a
- * reveal further down comes back solid.
+ * reveal further down comes back solid. Hamburger removed — the 3 links
+ * are always shown inline, at every screen width.
  */
 export default function Nav() {
-  const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -51,12 +48,12 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const solid = scrolled || open;
+  const solid = scrolled;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ease-out ${
-        hidden && !open ? "-translate-y-full" : "translate-y-0"
+        hidden ? "-translate-y-full" : "translate-y-0"
       } ${
         solid
           ? "bg-white/95 backdrop-blur border-b border-line shadow-[0_1px_0_0_rgba(10,10,10,0.04),0_8px_24px_-16px_rgba(10,10,10,0.25)]"
@@ -64,13 +61,14 @@ export default function Nav() {
       }`}
     >
       <div className="container-rccl flex items-center justify-between h-20 md:h-24">
-        <Link href="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-3 shrink-0">
           <span className="relative h-14 md:h-16 w-14 md:w-16 shrink-0">
             <Image
               src="/rccl-logo-mark.png"
               alt="RCCL logo mark"
               fill
               priority
+              sizes="64px"
               className="object-contain"
             />
           </span>
@@ -88,72 +86,35 @@ export default function Nav() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-3 md:gap-4">
+        <nav className="flex items-center gap-6 md:gap-8">
+          {links.map((l) => {
+            const active = l.href === "/" ? pathname === "/" : pathname?.startsWith(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm font-semibold uppercase tracking-[0.06em] transition-colors duration-300 ${
+                  active
+                    ? "text-signal"
+                    : solid
+                    ? "text-ink hover:text-signal"
+                    : "text-white hover:text-white/70"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
+
           <Link
             href="/contact"
-            className="hidden xl:inline-flex items-center rounded-full bg-signal text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink active:bg-ink transition-colors duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+            className="inline-flex items-center rounded-full bg-signal text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink active:bg-ink transition-colors duration-200 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
           >
             Contact Us
           </Link>
-
-          <button
-            className={`relative flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 shrink-0 ${
-              solid ? "bg-[#F1F0EC] hover:bg-signal/15 active:bg-signal/25" : "hover:bg-white/15 active:bg-white/25"
-            }`}
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="flex flex-col justify-center items-center gap-1.5 w-4 h-4">
-              <span
-                className={`block h-[1.5px] w-4 transition-[transform,background-color] duration-300 ${
-                  solid ? "bg-ink" : "bg-white"
-                } ${open ? "translate-y-[6.5px] rotate-45" : ""}`}
-              />
-              <span
-                className={`block h-[1.5px] w-4 transition-[opacity,background-color] duration-300 ${
-                  solid ? "bg-ink" : "bg-white"
-                } ${open ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`block h-[1.5px] w-4 transition-[transform,background-color] duration-300 ${
-                  solid ? "bg-ink" : "bg-white"
-                } ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`}
-              />
-            </span>
-          </button>
-        </div>
+        </nav>
       </div>
-
-      {open && (
-        <div className="border-t border-line bg-white">
-          <nav className="container-rccl flex flex-col py-4">
-            {links.map((l) => {
-              const active = pathname?.startsWith(l.href);
-              return (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  aria-current={active ? "page" : undefined}
-                  className={`py-3 text-base font-medium border-b border-line last:border-none transition-colors ${
-                    active ? "text-signal" : "text-ink active:text-signal"
-                  }`}
-                >
-                  {l.label}
-                </Link>
-              );
-            })}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-signal text-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em] xl:hidden"
-            >
-              Contact Us
-            </Link>
-          </nav>
-        </div>
-      )}
     </header>
   );
 }

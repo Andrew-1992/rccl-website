@@ -1,71 +1,93 @@
-import Link from "next/link";
-import { services } from "@/content/services";
-import { Section, SectionKicker, GhostLink } from "./UI";
+"use client";
 
-// Shortened display name for this one card only — the full "Project
-// Management & Consultation" name (used for the page title, SEO, and
-// everywhere else it's referenced) lives untouched in content/services.ts.
-const shortNameBySlug: Record<string, string> = {
-  "project-management-consultation": "Project Management",
-};
+import { useEffect, useRef, useState } from "react";
+import { Section, GhostLink } from "./UI";
 
-/**
- * Borderless line-list treatment, matching the Construct L reference: a
- * thin red line sits above each numbered item ("/01", "/02"...), no card
- * boxes at all. Header row unchanged: eyebrow + heading left, paragraph +
- * "View All Services" link right.
- */
+const coreServices = [
+  "General Construction",
+  "Architectural Design Services",
+  "Rammed Earth Construction",
+  "Road Construction",
+  "Bridge Construction",
+  "Villa and Home Construction",
+  "Renovation Works",
+  "Civil & MEP Engineering",
+  "Construction Materials Supply",
+];
+
+const projectTypes = [
+  "Green and Blue Infrastructure",
+  "Landscape Architecture",
+  "Commercial Developments",
+  "Education, Recreation and Parks",
+  "Tourism Infrastructure",
+  "Public Infrastructure Development",
+  "Community Urban Spaces & Space Regeneration",
+  "Urban Studies and Research",
+];
+
 export default function ServicesGrid() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const el = sectionRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Section>
-      <div className="grid md:grid-cols-2 gap-8 mb-14 items-end">
-        <div>
-          <SectionKicker index="02" label="Services" />
+      <div ref={sectionRef}>
+        <div
+          suppressHydrationWarning
+          className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 transition-all duration-700 ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        >
           <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05]">
-            Discover Our Service Offerings
+          Our Services
           </h2>
+          <GhostLink href="/services" className="shrink-0">View All Services</GhostLink>
         </div>
-        <div className="flex flex-col md:items-start gap-6">
-          <p className="text-ink/65 leading-relaxed max-w-md">
-            From rammed earth builds to full project management, we deliver
-            excellence at every phase of the build.
-          </p>
-          <GhostLink href="/services">View All Services</GhostLink>
+
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+          <div
+            suppressHydrationWarning
+            className={`transition-all duration-700 ease-out delay-150 ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          >
+            <h3 className="text-xs uppercase tracking-[0.14em] font-semibold text-signal mb-6">Core Services</h3>
+            <ul className="space-y-4">
+              {coreServices.map((item) => (
+                <li key={item} className="border-l-2 border-signal pl-4 py-0.5">
+                  <span className="text-sm md:text-base text-ink/80">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div
+            suppressHydrationWarning
+            className={`transition-all duration-700 ease-out delay-300 ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          >
+            <h3 className="text-xs uppercase tracking-[0.14em] font-semibold text-signal mb-6">Project Types</h3>
+            <ul className="space-y-4">
+              {projectTypes.map((item) => (
+                <li key={item} className="border-l-2 border-signal pl-4 py-0.5">
+                  <span className="text-sm md:text-base text-ink/80">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-x-12 gap-y-14">
-        {services.map((s, i) => (
-          <Link key={s.slug} href={`/services/${s.slug}`} className="group block">
-            <div className="w-12 h-[3px] bg-signal mb-6 transition-all duration-300 group-hover:w-20" />
-            <span className="font-display text-signal text-lg font-bold">{`/0${i + 1}`}</span>
-
-            <div className="flex items-start justify-between gap-4 mt-3">
-              <p className="font-display text-2xl md:text-3xl font-bold leading-snug text-ink group-hover:text-signal transition-colors duration-300">
-                {shortNameBySlug[s.slug] ?? s.name}
-              </p>
-              {s.flagship && (
-                <span className="shrink-0 inline-block text-[10px] font-semibold tracking-[0.14em] bg-signal text-white px-2.5 py-1 mt-1">
-                  FLAGSHIP
-                </span>
-              )}
-            </div>
-
-            <p className="mt-4 text-sm md:text-base text-ink/65 leading-relaxed max-w-md">
-              {s.oneLiner}
-            </p>
-
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink/70 group-hover:text-signal transition-colors duration-300">
-              Learn more
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-              >
-                &rarr;
-              </span>
-            </span>
-          </Link>
-        ))}
       </div>
     </Section>
   );

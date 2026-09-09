@@ -1,4 +1,7 @@
-import { Section, SectionKicker } from "./UI";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { Section } from "./UI";
 
 const steps = [
   { number: "01", label: "Consult", detail: "Brief, site, budget, and constraints confirmed in writing." },
@@ -7,32 +10,53 @@ const steps = [
   { number: "04", label: "Deliver", detail: "Inspection, documentation, and handover to a fixed date." },
 ];
 
-/**
- * Numbered circular markers (40px) connected by a horizontal line running
- * through their exact vertical center (top-[19px] = half the marker height
- * minus half the line thickness) — the previous version used a plain 10px
- * square with the line at top-[10px], which sat at the square's bottom
- * edge instead of its middle.
- */
 export default function ProcessStrip() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const el = sectionRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Section className="bg-ink text-white">
-      <SectionKicker index="04" label="How we work" tone="dark" />
-      <h2 className="font-display text-3xl md:text-5xl font-bold leading-[1.05] mb-16">
-        Consult. Design. Build. Deliver.
-      </h2>
+      <div ref={sectionRef}>
+        <h2
+          suppressHydrationWarning
+          className={`font-display text-3xl md:text-5xl font-bold leading-[1.05] mb-20 text-center md:text-left transition-all duration-700 ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        >
+          How We Work
+        </h2>
 
-      <div className="grid md:grid-cols-4 gap-10 md:gap-6 relative">
-        <div className="hidden md:block absolute top-[19px] left-0 right-0 h-px bg-white/20" aria-hidden="true" />
-        {steps.map((s) => (
-          <div key={s.label} className="relative">
-            <div className="relative z-10 w-10 h-10 rounded-full bg-signal text-white flex items-center justify-center font-display text-sm font-bold mb-6">
-              {s.number}
+        <div className="grid md:grid-cols-4 gap-12 md:gap-8 relative">
+          <div className="hidden md:block absolute top-[19px] left-0 right-0 h-px bg-white/10" aria-hidden="true" />
+          {steps.map((s, i) => (
+            <div
+              key={s.label}
+              suppressHydrationWarning
+              className={`relative transition-all duration-700 ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              style={revealed ? { transitionDelay: `${i * 120}ms` } : undefined}
+            >
+              <div className="relative z-10 w-10 h-10 rounded-full border border-white/30 bg-ink text-white/80 flex items-center justify-center font-display text-xs font-semibold mb-8 transition-colors duration-300">
+                {s.number}
+              </div>
+              <p className="font-display text-xl font-bold mb-2.5 tracking-tight">{s.label}</p>
+              <p className="text-sm text-white/55 leading-relaxed max-w-[220px]">{s.detail}</p>
             </div>
-            <p className="font-display text-xl font-bold mb-2">{s.label}</p>
-            <p className="text-sm text-white/65 leading-relaxed">{s.detail}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Section>
   );
