@@ -1,199 +1,202 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { Section, Eyebrow, PrimaryButton } from "@/components/UI";
 import CTABand from "@/components/CTABand";
-import PhotoPlaceholder from "@/components/PhotoPlaceholder";
-import SourceTag from "@/components/SourceTag";
 
 export const metadata: Metadata = {
   title: "Sustainability",
   description:
-    "The environmental and performance case for rammed earth construction in South Sudan — embodied carbon, local sourcing, thermal comfort, and longevity data from RCCL.",
+    "Project 1-Billion — Rammed Earth South Sudan's rammed-earth pilot house in South Sudan. Follow the build phase by phase, from demolition to finishing.",
 };
 
-const carbonData = [
-  { label: "Rammed earth", value: 22 },
-  { label: "Fired-clay block", value: 58 },
-  { label: "Concrete block", value: 74 },
-  { label: "Poured concrete", value: 96 },
-];
-const maxCarbon = Math.max(...carbonData.map((d) => d.value));
-
-const sourcingSteps = [
-  { title: "Site soil test", detail: "Subsoil within [X] km of site is tested first for suitability, before any material is trucked in." },
-  { title: "Local aggregate", detail: "Where soil doesn't meet spec on its own, aggregate is sourced from the nearest approved local supplier." },
-  { title: "Minimal imported stabilizer", detail: "Only the cement or lime stabilizer fraction — typically 5–8% by volume — needs to travel any real distance." },
-  { title: "Reduced haulage", detail: "Fewer truck movements than an equivalent block or concrete build, since the primary material is already on site." },
+const pilotRooms = [
+  "One master bedroom",
+  "Bathroom",
+  "Open-plan living, dining & kitchen",
+  "Laundry nook",
+  "Outdoor rear terrace",
 ];
 
-const longevityData = [
-  { label: "Rammed earth (maintained)", value: "[X]+ years" },
-  { label: "Fired-clay block", value: "[X]+ years" },
-  { label: "Unreinforced mud block", value: "[X] years" },
+const completedPhases = [
+  {
+    number: "01",
+    title: "Demolition",
+    description:
+      "Before construction could begin, the site had to be cleared of an existing structure. The old building, constructed from mud and teak, was carefully demolished to prepare the site for the Rammed Earth Pilot Project. This marked the first step in transforming the site and making way for a new approach to sustainable construction.",
+  },
+  {
+    number: "02",
+    title: "Foundation",
+    description:
+      "Rammed-earth buildings begin with foundations much like conventional buildings. In this phase, we completed the setting out, stone foundation, and reinforced concrete beam. We opted for a stone foundation to provide a stable and durable base capable of supporting the weight of the rammed-earth walls above.",
+  },
+  {
+    number: "03",
+    title: "Backfilling & Compaction",
+    description:
+      "This process prepares the ground for the floor slab, which will provide the finished base on which the rammed-earth walls will be constructed.",
+  },
+  {
+    number: "04",
+    title: "Floor Slab",
+    description:
+      "At this stage, a waterproofing membrane was laid over the compacted soil, followed by a layer of BRC reinforcement mesh. We then proceeded to cast a 100 mm (10 cm) thick concrete floor slab, creating a strong and level base for the rammed-earth walls.",
+  },
+  {
+    number: "05",
+    title: "Exterior Rammed Earth Walls",
+    description:
+      "The star of the project has undoubtedly been the rammed-earth walls. For the exterior walls, we constructed 300 mm-thick walls reaching 3 metres in height, showcasing the material at full scale. We chose rammed earth for its potential benefits in affordability, durability, energy efficiency, and reduced environmental impact. These walls also serve as our testing ground — allowing us to observe, document, and learn how rammed earth performs under South Sudan's conditions and gather valuable insights for future projects.",
+  },
+];
+
+const upcomingPhases = [
+  { number: "06", title: "Interior Walling, Plumbing & Electricals" },
+  { number: "07", title: "Ring Beam & Cantilever" },
+  { number: "08", title: "Roofing" },
+  { number: "09", title: "Window & Door Fixtures" },
+  { number: "10", title: "Back Terrace & Garden" },
+  { number: "11", title: "Finishing (tile work, plumbing fixtures, etc.)" },
+  { number: "12", title: "Furnishing" },
 ];
 
 export default function SustainabilityPage() {
   return (
     <>
       <PageHero
-        eyebrow="Sustainability"
-        title="The data behind the material."
-        intro="Rammed earth is RCCL's core sustainability commitment, not a side initiative sitting next to how we actually build. It's the structural material we default to, engineered with measurable advantages in this climate — and this page lays out the numbers we use to make that case to engineers, funders, and clients."
+        eyebrow="Sustainability — Project 1-Billion"
+        title="A billion reasons to make a change."
+        intro="At Rammed Earth South Sudan, we are committed to exploring more sustainable approaches to construction and contributing to a built environment that is affordable, resilient, and environmentally responsible. This column documents the progress, lessons, challenges, and milestones of our Rammed Earth Pilot Project — follow our journey as we test, learn, build, and explore what sustainable construction could look like in South Sudan."
       />
 
       <Section>
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <Eyebrow>Embodied carbon</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Carbon per m² of wall</h2>
-            <p className="text-ink/70 leading-relaxed mb-8 max-w-lg">
-              Embodied carbon is the emissions locked into a material before it&rsquo;s ever
-              used to heat or cool a building — extraction, manufacture, and transport.
-              Rammed earth uses the soil already on site, so most of that footprint
-              never happens.
-            </p>
-            <div className="space-y-5">
-              {carbonData.map((d) => (
-                <div key={d.label}>
-                  <div className="flex items-baseline justify-between mb-1.5">
-                    <span className="text-sm font-medium">{d.label}</span>
-                    <span className="text-sm text-ink/60">{d.value} kg CO₂e/m²</span>
-                  </div>
-                  <div className="h-3.5 bg-[#F2F0EC] border border-line">
-                    <div
-                      className={d.label === "Rammed earth" ? "h-full bg-signal" : "h-full bg-ink/70"}
-                      style={{ width: `${(d.value / maxCarbon) * 100}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <SourceTag />
-              <p className="text-xs text-ink/45">
-                Illustrative figures pending a formal lifecycle assessment (LCA) of RCCL&rsquo;s specific mix design.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <Eyebrow>Local sourcing</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Where the material comes from</h2>
-            <PhotoPlaceholder label="Local soil sourcing map, Juba region" aspect="aspect-[4/3]" tone="bone" className="mb-6" />
-            <div className="space-y-5">
-              {sourcingSteps.map((s, i) => (
-                <div key={s.title} className="flex gap-4">
-                  <span className="text-signal font-display text-lg font-bold shrink-0">{`0${i + 1}`}</span>
-                  <div>
-                    <h3 className="font-medium text-sm mb-1">{s.title}</h3>
-                    <p className="text-sm text-ink/65 leading-relaxed">{s.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-sm text-ink/70 leading-relaxed mt-6">
-              Shorter haulage distances cut fuel costs as directly as they cut carbon —
-              the two numbers move together on every rammed earth project we&rsquo;ve costed.
-            </p>
-            <div className="mt-4">
-              <SourceTag />
-            </div>
-          </div>
-        </div>
+        <Eyebrow>Our focus</Eyebrow>
+        <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 max-w-2xl">
+          Introducing, innovating, and experimenting with rammed earth
+        </h2>
+        <p className="text-ink/75 leading-relaxed max-w-2xl">
+          Our work focuses on introducing, innovating, and experimenting with rammed earth as a
+          building material for affordable, low-carbon housing in South Sudan. Rammed earth offers
+          a range of potential benefits, including reduced environmental impact, energy efficiency,
+          durability, and the opportunity to make better use of locally available materials.
+        </p>
       </Section>
 
       <Section className="bg-[#F7F6F3]">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <Eyebrow>Thermal performance</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Performance in Juba&rsquo;s climate</h2>
-            <p className="text-ink/70 leading-relaxed mb-8 max-w-lg">
-              A 600mm rammed earth wall has enough thermal mass to absorb daytime heat
-              and release it slowly overnight, flattening the indoor temperature swing
-              that a thin block or sheet-metal building tracks almost in real time with
-              the outside air.
-            </p>
-            <div className="border border-line divide-y divide-line">
-              <div className="grid grid-cols-3 p-4 text-xs uppercase tracking-[0.08em] text-ink/50 font-semibold">
-                <span>Wall type</span>
-                <span>Peak indoor swing</span>
-                <span>Cooling load</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 text-sm bg-white">
-                <span className="font-medium">Rammed earth, 600mm</span>
-                <span>&plusmn;[X]&deg;C</span>
-                <span className="text-signal font-medium">Low</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 text-sm bg-white">
-                <span className="font-medium">Concrete block, 200mm</span>
-                <span>&plusmn;[X]&deg;C</span>
-                <span>Moderate</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 text-sm bg-white">
-                <span className="font-medium">Sheet metal / light frame</span>
-                <span>&plusmn;[X]&deg;C</span>
-                <span>High</span>
-              </div>
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <SourceTag />
-              <p className="text-xs text-ink/45">Measured data from completed RCCL buildings, to be confirmed.</p>
-            </div>
-          </div>
+        <Eyebrow>Pilot project details</Eyebrow>
+        <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">A 68 m² demonstration home</h2>
+        <p className="text-ink/75 leading-relaxed mb-10 max-w-2xl">
+          The Rammed Earth Pilot Project is a compact 68 m² home designed to demonstrate how
+          rammed earth can be used to create functional, comfortable, and sustainable housing.
+          The design focuses on making efficient use of space while creating a simple and
+          practical home that showcases the potential of rammed-earth construction in South Sudan.
+        </p>
 
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          <div className="relative aspect-[4/5] overflow-hidden bg-white">
+            <Image
+              src="/sustainability/project-1billion-floor-plan.png"
+              alt="Project 1-Billion floor plan"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-contain p-4"
+            />
+          </div>
+          <div className="relative aspect-[4/5] overflow-hidden bg-white">
+            <Image
+              src="/sustainability/project-1billion-3d-plan.jpg"
+              alt="Project 1-Billion 3D floor plan"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-contain p-4"
+            />
+          </div>
+        </div>
+
+        <div className="relative aspect-[21/9] overflow-hidden bg-white mb-10">
+          <Image
+            src="/sustainability/project-1billion-section.jpg"
+            alt="Project 1-Billion building section"
+            fill
+            sizes="100vw"
+            className="object-contain p-4"
+          />
+        </div>
+
+        <h3 className="font-display text-lg font-bold mb-4">Layout</h3>
+        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-xl">
+          {pilotRooms.map((room) => (
+            <li key={room} className="flex gap-3 text-sm text-ink/75">
+              <span className="text-signal shrink-0">&#9632;</span>
+              <span>{room}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section>
+        <div className="grid md:grid-cols-[1fr_1fr] gap-12 items-center">
           <div>
-            <Eyebrow>Longevity</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Built to outlast the building schedule</h2>
-            <p className="text-ink/70 leading-relaxed mb-8 max-w-lg">
-              Stabilized, engineered rammed earth is a different material from
-              traditional unfired mud block. Properly detailed against rain and
-              foundation moisture, it performs on a lifespan comparable to fired-clay
-              masonry, with lower ongoing maintenance than a painted block facade.
+            <Eyebrow>The team on site</Eyebrow>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Rammed Earth Team</h2>
+            <p className="text-ink/75 leading-relaxed">
+              The crew behind Project 1-Billion — testing, building, and learning how rammed
+              earth performs under South Sudan&rsquo;s conditions, one phase at a time.
             </p>
-            <div className="space-y-4">
-              {longevityData.map((d) => (
-                <div key={d.label} className="flex items-baseline justify-between border-b border-line pb-3">
-                  <span className="text-sm font-medium">{d.label}</span>
-                  <span className="font-display text-lg">{d.value}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <SourceTag />
-              <p className="text-xs text-ink/45">Published rammed earth durability studies, to be confirmed.</p>
-            </div>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden">
+            <Image
+              src="/sustainability/project-1billion-team.jpg"
+              alt="RCCL Rammed Earth Team on site at Project 1-Billion"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </Section>
 
-      <Section>
-        <div className="max-w-3xl">
-          <Eyebrow>Why this matters beyond the wall</Eyebrow>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-            Sustainability, built on local capacity
-          </h2>
-          <p className="text-ink/75 leading-relaxed mb-4">
-            The environmental case for rammed earth doesn&rsquo;t stand on its own — it&rsquo;s
-            tied to who builds it. Every rammed earth project trains South Sudanese
-            crew in soil testing, formwork, and compaction, a skill set that stays in
-            the country whether or not that crew works with RCCL again.
-          </p>
-          <p className="text-ink/75 leading-relaxed">
-            That&rsquo;s the version of sustainability RCCL is built around: a building
-            method suited to South Sudan&rsquo;s climate and materials, built by people
-            trained here to keep building it after we&rsquo;ve handed the keys over.
-          </p>
+      <Section className="bg-ink text-white">
+        <Eyebrow>Progress</Eyebrow>
+        <h2 className="font-display text-3xl md:text-4xl font-bold mb-12">Project phases</h2>
+
+        <div className="space-y-10 mb-16">
+          {completedPhases.map((phase) => (
+            <div key={phase.number} className="grid md:grid-cols-[auto_1fr] gap-6 md:gap-10 border-b border-white/10 pb-10 last:border-none">
+              <div className="flex items-start gap-4 md:block">
+                <span className="font-display text-3xl font-bold text-signal">{phase.number}</span>
+                <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.14em] bg-signal/20 text-signal px-2.5 py-1 md:mt-2">
+                  Completed
+                </span>
+              </div>
+              <div>
+                <h3 className="font-display text-xl font-bold mb-3">{phase.title}</h3>
+                <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-2xl">{phase.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="text-xs uppercase tracking-[0.14em] font-semibold text-white/50 mb-6">Still to come</h3>
+        <div className="grid sm:grid-cols-2 gap-x-10 gap-y-4">
+          {upcomingPhases.map((phase) => (
+            <div key={phase.number} className="flex items-baseline gap-3 text-white/60">
+              <span className="font-display text-sm font-bold text-white/40">{phase.number}</span>
+              <span className="text-sm">{phase.title}</span>
+            </div>
+          ))}
         </div>
       </Section>
 
       <Section className="text-center">
         <h2 className="font-display text-2xl md:text-4xl font-bold max-w-2xl mx-auto mb-8">
-          Want the full lifecycle assessment for your project?
+          Want to follow Project 1-Billion as it&rsquo;s built?
         </h2>
-        <PrimaryButton href="/contact">Ask about a rammed earth feasibility assessment</PrimaryButton>
+        <PrimaryButton href="/events">See it on our Events page</PrimaryButton>
       </Section>
 
-      <CTABand heading="Build something that's still standing in thirty years." />
+      <CTABand heading="A billion reasons to build differently." />
     </>
   );
 }

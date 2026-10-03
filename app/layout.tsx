@@ -47,8 +47,8 @@ const inter = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rccl.co.ss"),
   title: {
-    default: "Rammed Earth Construction Ltd | Juba, South Sudan",
-    template: "%s | RECL",
+    default: "Rammed Earth South Sudan | Juba, South Sudan",
+    template: "%s | Rammed Earth South Sudan",
   },
   description:
     "South Sudan's most technically credible builder. Rammed earth construction, general construction, architectural design and project management in Juba, South Sudan.",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     "sustainable building South Sudan",
   ],
   openGraph: {
-    title: "Rammed Earth Construction Limited",
+    title: "Rammed Earth South Sudan",
     description: "Build and Design. Construction and architectural design in Juba, South Sudan.",
     locale: "en_US",
     type: "website",

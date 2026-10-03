@@ -12,257 +12,164 @@ export type Project = {
   slug: string;
   name: string;
   heroPhoto?: string;
+  images: string[];
   serviceSlug: string;
   serviceLabel: string;
   location: string;
-  sizeSqm: string;
-  duration: string;
   year: string;
   resultLine: string;
-  challenge: string;
-  approach: string;
-  technique: string;
-  outcome: string;
-  outcomeStat?: OutcomeStat;
   quote?: ProjectQuote;
-  /**
-   * Photo gallery — plain list of captions. Each entry renders as one image
-   * slot on the project page. To add a photo, add a caption string here; no
-   * layout or component changes are needed.
-   */
-  gallery: string[];
 };
 
-// Sourced from RCCL's company profile (Portfolio 2023 / 2024 / 2025).
-// Project name, location, and year are as stated in that document.
-// Everything else — challenge, approach, outcome detail, size, duration,
-// quotes — was not included in the source material, so it's marked [X]
-// for RCCL to confirm rather than invented.
-
 export const projects: Project[] = [
-  // — Portfolio 2025 —
+  {
+    slug: "rivonia-luxury-apartment",
+    name: "Rivonia Luxury Apartment",
+    heroPhoto: "/projects/rivonia-luxury-apartments.jpg",
+    images: [
+      "/projects/rivonia-luxury-apartments.jpg",
+      "/projects/rivonia-luxury-apartments-2.jpg",
+      "/projects/rivonia-luxury-apartments-3.jpg",
+      "/projects/rivonia-luxury-apartments-4.jpg",
+    ],
+    serviceSlug: "architectural-design",
+    serviceLabel: "Architectural Design",
+    location: "Balpam, Juba",
+    year: "2026",
+    resultLine: "A luxurious residential apartment, Juba.",
+  },
   {
     slug: "peace-garden-arts-center",
-    name: "PEACE Garden Arts Center",
+    name: "Peace Garden Arts Center",
+    heroPhoto: "/projects/peace-gardens-.jpg",
+    images: [
+      "/projects/peace-gardens-.jpg",
+      "/projects/peace-gardens-2.jpg",
+      "/projects/peace-gardens-3.jpg",
+      "/projects/peace-gardens-4.jpg",
+    ],
     serviceSlug: "architectural-design",
     serviceLabel: "Architectural Design",
     location: "Luri County, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
     year: "2025",
     resultLine: "A community arts center designed for Luri County, Juba.",
-    heroPhoto: "peace-garden-arts-center.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Institutional/cultural building design. [X] — construction technique and materials to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Exterior render, entrance approach", "Site landscaping and courtyard"],
   },
   {
     slug: "thongpiny-apartments",
-    name: "THONGPINY Apartments",
+    name: "Thongpiny Apartments",
+    heroPhoto: "/projects/thongpiny-apartments-detail.jpg",
+    images: [
+      "/projects/thongpiny-apartments-detail.jpg",
+      "/projects/thongpiny-apartments-2.jpg",
+      "/projects/thongpiny-apartments-3.jpg",
+      "/projects/thongpiny-apartments-4.jpg",
+      "/projects/thongpiny-apartments-5.jpg",
+    ],
     serviceSlug: "general-construction",
     serviceLabel: "General Construction",
     location: "Thongpiny, Juba South",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
     year: "2025",
     resultLine: "A multi-storey residential apartment building in Thongpiny.",
-    heroPhoto: "thongpiny-apartments-detail.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Multi-storey residential construction with landscaped balcony terraces. [X] — structural system to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Facade detail, planted balconies", "Building elevation, street view"],
-  },
-  {
-    slug: "entrepreneurship-innovation-hub",
-    name: "Entrepreneurship and Innovation HUB",
-    serviceSlug: "architectural-design",
-    serviceLabel: "Architectural Design",
-    location: "Custom, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2025",
-    resultLine: "A dedicated hub supporting entrepreneurship and innovation in Juba.",
-   heroPhoto: "entrepreneurship-innovation-hub.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Mixed-use institutional design with landscaped public realm. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Aerial site render", "Landscaped courtyard and pathways"],
   },
   {
     slug: "mr-box-container-offices-retail",
-    name: "Mr. BOX Container Offices and Retail",
+    name: "Mr. Box Container Offices and Retail",
+    heroPhoto: "/projects/mr-box-container-offices-retail.jpg",
+    images: [
+      "/projects/mr-box-container-offices-retail.jpg",
+      "/projects/mr-box-container-offices-2.jpg",
+      "/projects/mr-box-container-offices-3.jpg",
+      "/projects/mr-box-container-offices-4.jpg",
+      "/projects/mr-box-container-offices-5.jpg",
+    ],
     serviceSlug: "general-construction",
     serviceLabel: "General Construction",
     location: "Opposite Nile Pet, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
     year: "2025",
     resultLine: "A container-based office and retail development opposite Nile Pet, Juba.",
-    heroPhoto: "mr-box-container-offices-retail.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Adaptive container-based construction for commercial and retail use. [X] — technique detail to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Container units, retail frontage", "Courtyard seating area"],
   },
-
-  // — Portfolio 2024 —
+  {
+    slug: "entrepreneurship-innovation-hub",
+    name: "Entrepreneurship & Innovation Hub",
+    heroPhoto: "/projects/entrepreneurship-hub.jpg",
+    images: [
+      "/projects/entrepreneurship-hub.jpg",
+      "/projects/entrepreneurship-hub-2.jpg",
+      "/projects/entrepreneurship-hub-3.jpg",
+      "/projects/entrepreneurship-hub-4.jpg",
+      "/projects/entrepreneurship-hub-5.jpg",
+    ],
+    serviceSlug: "architectural-design",
+    serviceLabel: "Architectural Design",
+    location: "Custom, Juba",
+    year: "2025",
+    resultLine: "A dedicated hub supporting entrepreneurship and innovation in Juba.",
+  },
   {
     slug: "liberty-apartments-offices",
     name: "Liberty Apartments & Offices",
+    heroPhoto: "/projects/liberty-apartments-offices.jpg",
+    images: [
+      "/projects/liberty-apartments-offices.jpg",
+      "/projects/liberty-apartments-2.jpg",
+      "/projects/liberty-apartments-3.jpg",
+      "/projects/liberty-apartments-4.jpg",
+      "/projects/liberty-apartments-5.jpg",
+    ],
     serviceSlug: "general-construction",
     serviceLabel: "General Construction",
     location: "Monrovia, Liberia",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
     year: "2024",
     resultLine: "A mixed apartment and office development in Monrovia, Liberia — RCCL's design work beyond South Sudan.",
-    heroPhoto: "liberty-apartments-offices.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Mixed-use residential and office building with arched, screened facades. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Facade detail, arched screens", "Street-level view"],
   },
   {
     slug: "ayendit-medical-center",
     name: "Ayendit Medical Center for Women & Children",
+    heroPhoto: "/projects/ayendit-medical-center.jpg",
+    images: [
+      "/projects/ayendit-medical-center.jpg",
+      "/projects/ayendit-medical-center-2.jpg",
+      "/projects/ayendit-medical-center-3.jpg",
+      "/projects/ayendit-medical-center-4.jpg",
+      "/projects/ayendit-medical-center-5.jpg",
+    ],
     serviceSlug: "general-construction",
     serviceLabel: "General Construction",
     location: "Bilyang, Bor Road",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2024",
+    year: "2023",
     resultLine: "A medical center for women and children on Bor Road.",
-    heroPhoto: "ayendit-medical-center.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Healthcare facility design and construction. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Entrance and approach", "Site context view"],
   },
   {
-    slug: "freedom-hall-building-proposal",
-    name: "Freedom Hall Building Proposal",
+    slug: "nyakuron-west-villa",
+    name: "Nyakuron West Villa",
+    heroPhoto: "/projects/nyakuron-west-villa.jpg",
+    images: [
+      "/projects/nyakuron-west-villa.jpg",
+      "/projects/nyakuron-west-villa-2.jpg",
+      "/projects/nyakuron-west-villa-3.jpg",
+      "/projects/nyakuron-west-villa-4.jpg",
+      "/projects/nyakuron-west-villa-5.jpg",
+    ],
     serviceSlug: "architectural-design",
     serviceLabel: "Architectural Design",
-    location: "Customs, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2024",
-    resultLine: "A design proposal for a public hall in the Customs area of Juba.",
-    heroPhoto: "freedom-hall-building-proposal.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Public building design proposal, site plan and massing study. [X] — further detail to be confirmed.",
-    outcome: "Design proposal stage — [X] to be confirmed if progressed to construction.",
-    gallery: ["Site plan", "Massing render"],
-  },
-  {
-    slug: "mr-pach-bill-family-residence",
-    name: "Mr. Pach Bill Family Residence",
-    serviceSlug: "general-construction",
-    serviceLabel: "General Construction",
-    location: "Gudele Block 1, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2024",
-    resultLine: "A private family residence in Gudele Block 1, Juba.",
-    heroPhoto: "mr-pach-bill-family-residence.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Private residential villa construction. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Interior, living space", "Facade detail, timber screens"],
-  },
-
-  // — Portfolio 2023 —
-  {
-    slug: "melut-county-community-hospital",
-    name: "Melut County Community Hospital",
-    serviceSlug: "general-construction",
-    serviceLabel: "General Construction",
-    location: "Melut County, Upper Nile State",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
+    location: "Nyakuron West, Juba",
     year: "2023",
-    resultLine: "A community hospital serving Melut County, Upper Nile State.",
-    heroPhoto: "melut-county-community-hospital.jpg",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Healthcare facility design and construction. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Exterior approach view", "Landscaped grounds"],
-  },
-  {
-    slug: "south-sudan-national-archives-proposal",
-    name: "South Sudan National Archives Building Proposal",
-    serviceSlug: "architectural-design",
-    serviceLabel: "Architectural Design",
-    location: "Customs, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2023",
-    resultLine: "A design proposal for South Sudan's National Archives building.",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Institutional archive building design proposal. [X] — further detail to be confirmed.",
-    outcome: "Design proposal stage — [X] to be confirmed if progressed to construction.",
-    gallery: ["Aerial site render", "Building facade study"],
-  },
-  {
-    slug: "hai-jebel-residential-villa",
-    name: "01 Hai Jebel Residential Villa",
-    serviceSlug: "general-construction",
-    serviceLabel: "General Construction",
-    location: "Hai Jebel, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2023",
-    resultLine: "A private residential villa in Hai Jebel, Juba.",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Private residential villa construction. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Facade, street view", "Entrance detail"],
-  },
-  {
-    slug: "mia-saba-mixed-use-apartments",
-    name: "Mia Saba Mixed Use Apartments",
-    serviceSlug: "general-construction",
-    serviceLabel: "General Construction",
-    location: "Mia Saba, Juba",
-    sizeSqm: "[X] m²",
-    duration: "[X]",
-    year: "2023",
-    resultLine: "A mixed-use apartment development in Mia Saba, Juba.",
-    challenge: "[X] — project brief and challenge to be confirmed.",
-    approach: "[X] — design approach to be confirmed.",
-    technique: "Mixed-use residential and ground-floor commercial construction. [X] — construction technique to be confirmed.",
-    outcome: "[X] — outcome and impact to be added following delivery.",
-    gallery: ["Building elevation", "Ground-floor frontage"],
+    resultLine: "A private residential villa in Nyakuron West, Juba.",
   },
 ];
 
-export function getProjectBySlug(slug: string) {
-  return projects.find((p) => p.slug === slug);
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((project) => project.slug === slug);
 }
 
-export function getProjectsByService(serviceSlug: string) {
-  return projects.filter((p) => p.serviceSlug === serviceSlug);
+export function getProjectsByService(serviceSlug: string): Project[] {
+  return projects.filter((project) => project.serviceSlug === serviceSlug);
 }
 
-/**
- * Returns the next project in the list after the given slug, wrapping
- * around to the first project at the end — used for the "Next project"
- * teaser at the bottom of each project detail page.
- */
-export function getNextProject(slug: string) {
-  const index = projects.findIndex((p) => p.slug === slug);
-  if (index === -1) return projects[0];
+export function getNextProject(slug: string): Project {
+  const index = projects.findIndex((project) => project.slug === slug);
+  if (index === -1) {
+    return projects[0];
+  }
   return projects[(index + 1) % projects.length];
 }

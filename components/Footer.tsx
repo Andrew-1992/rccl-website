@@ -103,13 +103,13 @@ export default function Footer() {
           <div>
             <h4 className="text-xs uppercase tracking-[0.14em] font-semibold text-white/50 mb-5">Social Media</h4>
             <div className="flex gap-3">
-              <SocialIcon href="https://facebook.com/[X]" label="RCCL on Facebook">
+              <SocialIcon href="https://facebook.com/[X]" label="RESS on Facebook">
                 <FacebookIcon />
               </SocialIcon>
-              <SocialIcon href="https://linkedin.com/company/[X]" label="RCCL on LinkedIn">
+              <SocialIcon href="https://linkedin.com/company/[X]" label="RESS on LinkedIn">
                 <LinkedInIcon />
               </SocialIcon>
-              <SocialIcon href="https://x.com/[X]" label="RCCL on X">
+              <SocialIcon href="https://x.com/[X]" label="RESS on X">
                 <XIcon />
               </SocialIcon>
               <SocialIcon href="https://youtube.com/@[X]" label="RCCL on YouTube">

@@ -7,11 +7,8 @@ import { PrimaryButton } from "./UI";
 /**
  * Split layout, matching the Brentor reference: solid-color panel with
  * headline + button on the left, full-bleed project photo with a stat
- * overlay on the right. Photo is a fixed real project image (not a
- * conditional file check, so no fs/server-split needed here — see
- * Hero/HeroContent for that pattern where it's actually required).
- * Years-operating stat is calculated the same way TrustStrip does
- * elsewhere on the site, not invented.
+ * overlay on the right. Years-operating stat is calculated the same way
+ * TrustStrip does elsewhere on the site, not invented.
  */
 export default function CTABand({
   heading,
@@ -48,7 +45,6 @@ export default function CTABand({
 
   return (
     <section ref={sectionRef} className="grid md:grid-cols-2">
-      {/* Left — solid color panel, headline + button */}
       <div
         suppressHydrationWarning
         className={`bg-signal text-white flex flex-col justify-center px-8 md:px-14 py-20 md:py-28 transition-all duration-700 ease-out ${
@@ -77,7 +73,6 @@ export default function CTABand({
         </PrimaryButton>
       </div>
 
-      {/* Right — full-bleed photo with a stat overlay */}
       <div
         suppressHydrationWarning
         className={`relative min-h-[320px] md:min-h-0 overflow-hidden transition-all duration-700 ease-out delay-200 ${
@@ -85,7 +80,7 @@ export default function CTABand({
         }`}
       >
         <Image
-          src="/ayendit-medical-center.jpg"
+          src="/projects/ayendit-medical-center.jpg"
           alt=""
           fill
           sizes="(min-width: 768px) 50vw, 100vw"

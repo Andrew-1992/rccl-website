@@ -70,30 +70,11 @@ export default function HeroContent({ hasVideo }: { hasVideo: boolean }) {
               revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <strong className="font-semibold text-white">Rammed Earth Construction Ltd</strong> partners with clients to build rammed earth structures that are environmentally sustainable.
+            <strong className="font-semibold text-white">Rammed Earth South Sudan</strong> is a leading innovator in design + build,  providing durable environmentally sustainable rammed earth structures, working closely with clients to create high-quality spaces that are built to last.
+
           </p>
 
-          <div
-            suppressHydrationWarning
-            className={`mt-10 flex flex-wrap items-center gap-8 transition-all duration-700 ease-out delay-300 ${
-              revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-white text-ink px-7 py-3.5 text-sm font-semibold hover:bg-signal hover:text-white transition-colors duration-300"
-            >
-              Request a Quote
-              <span aria-hidden="true">&rarr;</span>
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white border-b border-white/60 pb-0.5 hover:border-white transition-colors duration-300"
-            >
-              Learn more about us
-              <span aria-hidden="true">&darr;</span>
-            </Link>
-          </div>
+          
         </div>
       </div>
 
