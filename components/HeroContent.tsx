@@ -1,16 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Matches the Brentor reference's layout: one full-bleed background, dark
- * overlay for contrast, left-aligned bold headline, subtext, and two
- * buttons side by side — no secondary accent box, no scroll cue. The
- * background is the video when present (hero-bg.mp4), with the photo
- * (hero-bg-content — actually melut photo below) as its poster and as
- * the fallback if no video file exists or prefers-reduced-motion is set.
+ * Full-bleed background, dark overlay for contrast, left-aligned bold
+ * headline, subtext, and two buttons side by side. Background is the
+ * video when hasVideo is true (see Hero.tsx for why that's currently
+ * forced off), falling back to the static photo with a Ken Burns zoom
+ * otherwise.
  */
 export default function HeroContent({ hasVideo }: { hasVideo: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -70,11 +68,8 @@ export default function HeroContent({ hasVideo }: { hasVideo: boolean }) {
               revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <strong className="font-semibold text-white">Rammed Earth South Sudan</strong> is a leading innovator in design + build,  providing durable environmentally sustainable rammed earth structures, working closely with clients to create high-quality spaces that are built to last.
-
+            <strong className="font-semibold text-white">Rammed Earth South Sudan</strong> is a leading innovator in design + build, providing durable environmentally sustainable rammed earth structures, working closely with clients to create high-quality spaces that are built to last.
           </p>
-
-          
         </div>
       </div>
 
