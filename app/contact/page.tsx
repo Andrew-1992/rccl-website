@@ -47,13 +47,20 @@ export default function ContactPage() {
             <div className="mt-8 aspect-[4/3] w-full border border-line overflow-hidden">
               <iframe
                 title="RCCL office location, Juba"
-                src="https://www.google.com/maps?q=Juba,South+Sudan&output=embed"
+                src="https://www.google.com/maps?q=4.852650,31.615123&z=17&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-            <p className="text-xs text-ink/45 mt-2">[X] — update the map query with RCCL&rsquo;s exact office coordinates.</p>
+            <a
+              href="https://maps.app.goo.gl/KWcvBiaR7wh6NyzD7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm font-medium text-signal hover:underline mt-3"
+            >
+              Open in Google Maps &rarr;
+            </a>
           </div>
 
           <div>
