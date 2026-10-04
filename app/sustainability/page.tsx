@@ -3,6 +3,8 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import { Section, Eyebrow, PrimaryButton } from "@/components/UI";
 import CTABand from "@/components/CTABand";
+import PhaseGallery, { type GalleryPhase } from "@/components/PhaseGallery";
+import { getPhaseImages } from "@/lib/phaseGallery";
 
 export const metadata: Metadata = {
   title: "Sustainability",
@@ -61,7 +63,29 @@ const upcomingPhases = [
   { number: "12", title: "Furnishing" },
 ];
 
+/**
+ * Gallery cards, one per phase. Photos are read from
+ * /public/sustainability/phases/<folder> — drop image files into a
+ * phase's folder and they appear on its card automatically.
+ */
+const galleryFolders: { folder: string; label: string; title: string; fit?: "cover" | "contain" }[] = [
+  { folder: "00-design-details", label: "Design", title: "Project Design Details", fit: "contain" },
+  { folder: "01-demolition", label: "Phase 01", title: "Demolition" },
+  { folder: "02-foundation", label: "Phase 02", title: "Foundation" },
+  { folder: "03-backfilling-compaction", label: "Phase 03", title: "Backfilling & Compaction" },
+  { folder: "04-floor-slab", label: "Phase 04", title: "Floor Slab" },
+  { folder: "05-exterior-rammed-earth-walls", label: "Phase 05", title: "Exterior Rammed Earth Walls" },
+];
+
 export default function SustainabilityPage() {
+  const galleryPhases: GalleryPhase[] = galleryFolders.map((g) => ({
+    slug: g.folder,
+    label: g.label,
+    title: g.title,
+    fit: g.fit,
+    images: getPhaseImages(g.folder),
+  }));
+
   return (
     <>
       <PageHero
@@ -187,6 +211,16 @@ export default function SustainabilityPage() {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Section className="bg-[#F7F6F3]">
+        <Eyebrow>Gallery</Eyebrow>
+        <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Project 1-Billion in pictures</h2>
+        <p className="text-ink/75 leading-relaxed mb-10 max-w-2xl">
+          A visual record of the pilot house, phase by phase. Hover a card to flip through its
+          photos, or open it to view them full screen.
+        </p>
+        <PhaseGallery phases={galleryPhases} />
       </Section>
 
       <Section className="text-center">
