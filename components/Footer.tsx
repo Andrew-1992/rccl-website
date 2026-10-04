@@ -25,6 +25,7 @@ const projectTypes = [
 
 const email = "rammedearth.co@gmail.com";
 const phone = { display: "+211 923 228 220", href: "tel:+211923228220" };
+const altPhone = { display: "+211 924 078 083", href: "tel:+211924078083" };
 
 export default function Footer() {
   return (
@@ -63,6 +64,11 @@ export default function Footer() {
             <a href={phone.href} className="flex items-center gap-2.5 text-sm font-medium text-white/85 hover:text-signal transition-colors">
               <span className="text-signal shrink-0"><PhoneIcon /></span>
               {phone.display}
+            </a>
+            <span className="hidden md:block w-px h-6 bg-white/15" aria-hidden="true" />
+            <a href={altPhone.href} className="flex items-center gap-2.5 text-sm font-medium text-white/85 hover:text-signal transition-colors">
+              <span className="text-signal shrink-0"><PhoneIcon /></span>
+              {altPhone.display}
             </a>
           </div>
         </div>
