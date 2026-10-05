@@ -108,8 +108,8 @@ export default function Footer() {
 
           <div>
             <h4 className="text-xs uppercase tracking-[0.14em] font-semibold text-white/50 mb-5">Social Media</h4>
-            <div className="flex gap-3">
-              <SocialIcon href="https://facebook.com/[X]" label="RESS on Facebook">
+            <div className="flex flex-wrap gap-3">
+              <SocialIcon href="https://www.facebook.com/profile.php?id=61585214954293" label="RESS on Facebook">
                 <FacebookIcon />
               </SocialIcon>
               <SocialIcon href="https://linkedin.com/company/[X]" label="RESS on LinkedIn">
@@ -118,8 +118,11 @@ export default function Footer() {
               <SocialIcon href="https://x.com/[X]" label="RESS on X">
                 <XIcon />
               </SocialIcon>
-              <SocialIcon href="https://youtube.com/@[X]" label="RCCL on YouTube">
+              <SocialIcon href="https://youtu.be/cSyc7d_5lgw" label="RESS on YouTube">
                 <YouTubeIcon />
+              </SocialIcon>
+              <SocialIcon href="https://www.tiktok.com/@rammed.earth.cons" label="RESS on TikTok">
+                <TikTokIcon />
               </SocialIcon>
             </div>
           </div>
@@ -191,6 +194,14 @@ function LinkedInIcon() {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
       <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.25h4.5V23H.24V8.25zM8.5 8.25h4.31v2.02h.06c.6-1.14 2.07-2.34 4.26-2.34 4.55 0 5.39 3 5.39 6.9V23h-4.5v-6.84c0-1.63-.03-3.73-2.27-3.73-2.27 0-2.62 1.77-2.62 3.6V23H8.5V8.25z" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
     </svg>
   );
 }
