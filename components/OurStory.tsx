@@ -32,7 +32,7 @@ export default function OurStory() {
             Our Story
           </h2>
           <p className="text-ink/75 leading-relaxed mb-5">
-            Rammed Earth Construction Limited: Founded in 2022 with the commitment to deliver unparalleled innovative and
+            Rammed Earth South Sudan: Founded in 2022 with the commitment to deliver unparalleled innovative and
             sustainable construction techniques, with a core focus on the rammed
             earth construction technique.
           </p>
