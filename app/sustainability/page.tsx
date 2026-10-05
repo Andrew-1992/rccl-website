@@ -117,37 +117,6 @@ export default function SustainabilityPage() {
           practical home that showcases the potential of rammed-earth construction in South Sudan.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-10">
-          <div className="relative aspect-[4/5] overflow-hidden bg-white">
-            <Image
-              src="/sustainability/project-1billion-floor-plan.png"
-              alt="Project 1-Billion floor plan"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-contain p-4"
-            />
-          </div>
-          <div className="relative aspect-[4/5] overflow-hidden bg-white">
-            <Image
-              src="/sustainability/project-1billion-3d-plan.jpg"
-              alt="Project 1-Billion 3D floor plan"
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-contain p-4"
-            />
-          </div>
-        </div>
-
-        <div className="relative aspect-[21/9] overflow-hidden bg-white mb-10">
-          <Image
-            src="/sustainability/project-1billion-section.jpg"
-            alt="Project 1-Billion building section"
-            fill
-            sizes="100vw"
-            className="object-contain p-4"
-          />
-        </div>
-
         <h3 className="font-display text-lg font-bold mb-4">Layout</h3>
         <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-xl">
           {pilotRooms.map((room) => (
