@@ -39,7 +39,7 @@ export default function ProjectsGrid({
               <div className="relative aspect-[4/3] overflow-hidden">
                 {p.heroPhoto ? (
                   <Image
-                    src={`/${p.heroPhoto}`}
+                    src={p.heroPhoto}
                     alt={p.name}
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
