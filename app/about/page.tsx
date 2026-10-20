@@ -34,12 +34,6 @@ const leaders = [
   { name: "Aluong Thereza", role: "Admin & Finance", photo: "team-aluong-thereza.jpg" },
 ];
 
-const certifications = [
-  "[Certification / registration — X]",
-  "[Professional affiliation — X]",
-  "[Government contractor registration — X]",
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -125,32 +119,6 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
-      </Section>
-
-      <Section className="bg-[#F7F6F3]">
-        <Eyebrow>Certifications &amp; affiliations</Eyebrow>
-        <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">Credentials</h2>
-        <ul className="space-y-3 max-w-xl">
-          {certifications.map((c) => (
-            <li key={c} className="flex gap-3 text-sm md:text-base text-ink/75">
-              <span className="text-signal mt-1 shrink-0">&#9632;</span>
-              <span>{c}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section className="text-center border-t border-line">
-        <Eyebrow>Join RCCL</Eyebrow>
-        <h2 className="font-display text-2xl md:text-4xl font-bold max-w-2xl mx-auto mb-8">
-          Want to help build it?
-        </h2>
-        
-          href="/careers"
-          className="inline-flex items-center justify-center rounded-full border border-ink text-ink px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] hover:bg-ink hover:text-white transition-colors duration-200"
-        <a>
-          Work With Us
-        </a>
       </Section>
 
       <CTABand heading="Want to see how we'd approach your site?" />
